@@ -1,6 +1,6 @@
 # Future Local Agent Notes
 
-MoonBridge is intended to **prepare structured local context** before more capable local agents or autonomous workflows are introduced.
+MoonBridge is intended to **prepare structured local context** before more capable local agents or later approval-gated workflows are introduced.
 
 ---
 

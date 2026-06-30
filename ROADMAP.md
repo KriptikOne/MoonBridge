@@ -2,9 +2,13 @@
 
 A simple plan for the public template. Dates are tentative; scope may shift based on community feedback.
 
+**Current public release:** `0.6.0-local-helper-planning` — see [VERSION.md](VERSION.md).
+
 ---
 
-## v0.1 — Empty public template *(complete)*
+## Shipped — public template maturity
+
+### v0.1.0-bootstrap *(complete)*
 
 - Complete folder structure and MoonPool categories
 - Safety rules, agent laws, and onboarding docs
@@ -12,92 +16,68 @@ A simple plan for the public template. Dates are tentative; scope may shift base
 - Review-first helper scripts (allowlist-only, copy-first)
 - MIT license and contribution/security docs
 
-**Goal:** Anyone can copy the template and start organising locally without tools or cloud dependencies.
+### v0.2.0-usability *(complete)*
 
----
-
-## v0.2 — Human usability + agent preparation layer *(current)*
-
-- Static human dashboard (`08_Human_Dashboard/dashboard.html`) — offline, no automation
-- Agent prompt templates (`09_Agent_Prompts/`) — approval-gated workflows
-- Automation planning docs (`10_Automation_Plans/`) — ideas only, not implemented
+- Static human dashboard (`dashboard.html`) — offline, no automation
+- Agent prompt templates (`09_Agent_Prompts/`)
+- Automation planning docs (`10_Automation_Plans/`) — documentation-only
 - Human-first workflow and approval level map
 - Cross-platform path placeholders (`<MOONBRIDGE_ROOT>`, `<HOME>`)
 
-**Goal:** First-time users can orient quickly; future agents inherit clear boundaries — but **no working automation ships in this release**.
+### v0.3.0-auditor *(complete)*
 
-**Not included in v0.2:** live scanning, auto-indexing, running agents, or background automation.
+- [moonpool_auditor.html](08_Human_Dashboard/moonpool_auditor.html) — MoonPool Auditor Action Planner
+- Built-in sample records; Columns, List, Grid views; Inspector and action-plan panels
+- Prepares approval, quarantine, allowlist, import, and review plans — **no execution**
 
-### MoonPool Auditor Action Planner *(current)*
+### v0.4.0-catalog-auditor *(complete)*
 
-- Initial `moonpool_auditor.html` — OS-style local utility for action-plan generation
-- Sample/mock MoonPool navigation; Columns, List, Grid views
-- Inspector pane and Generated Action Plan panel (Markdown + JSON)
-- Prepare approval, quarantine, allowlist, import, and review plans — **no execution**
-- **Catalog-driven display** — paste catalog JSON manually (`sample_file_catalog.json` as public example)
+- Catalog-driven Auditor — **manually pasted catalog JSON** only
+- [sample_file_catalog.json](04_Lists_And_Records/sample_file_catalog.json), [file_catalog_schema.md](04_Lists_And_Records/file_catalog_schema.md)
+- [auditor_catalog_guide.md](08_Human_Dashboard/auditor_catalog_guide.md)
 
-**Future (not yet built):**
+### v0.5.0-chronology-core *(complete)*
 
-- Private catalogs from approved metadata-only inventories (human exports JSON for paste)
-- Approved local helper executor that runs only human-confirmed plans — **execution does not exist today**
+- [11_Chronology/](11_Chronology/) — date fields, confidence rules, sample reports, timeline events
+- [12_Review_Queue/](12_Review_Queue/) — human review for date uncertainty
+- [13_Handover_Export/](13_Handover_Export/) — handover templates and sample exports
 
-### Chronology Core *(current / completed layer)*
+**Not included:** chronology scanning engine, auto-populated review queues, auto-generated timeline exports.
 
-- [11_Chronology/](11_Chronology/) — date field definitions, confidence rules, sample reports, timeline events
-- [12_Review_Queue/](12_Review_Queue/) — human review for missing, conflicting, and suspicious dates
-- [13_Handover_Export/](13_Handover_Export/) — chronology summaries and timeline JSON for handover packages
+### v0.6.0-local-helper-planning *(complete — planning only)*
 
-**Not included:** automatic chronology scanning, auto-populated review queues, or auto-generated timeline exports.
+- [14_Local_Helper/](14_Local_Helper/) — principles, Basic Mode / Assisted Mode, suggestion fields, safety checklist
+- **Documentation and schema only** — no helper code, no model integration, no helper execution
 
-### Optional Local Helper planning layer *(current / planning only)*
-
-- [14_Local_Helper/](14_Local_Helper/) — principles, Basic Mode / Assisted Mode, suggestion fields, sample output, safety checklist, human review template
-- **Basic Mode** — full MoonBridge without AI or model use (not inferior or incomplete)
-- **Assisted Mode** — optional local/offline suggestions only; all output marked suggested, not verified
-
-**Not included:** helper code, model integration, automatic suggestions, file scanning by helper, or helper-driven approvals.
-
-**Future implementation (optional, approval-gated):**
-
-- Local/offline helper that suggests summaries, tags, risk notes, and date clues
-- Human review required before suggestions enter verified catalog or handover fields
-- No network by default; no command execution; no file actions by helper
-- Future helper execution remains separate — does not exist today
+**Not included:** helper scanning, helper file reads, helper approvals, helper file actions, external data sending.
 
 ---
 
-## v0.3 — Optional sample project packs
+## Planned — future work (approval-gated)
 
-- Generic sample templates (e.g. creative project, client folder, research batch)
-- Example index entries using fictional data only
-- Documented allowlist examples (commented, not active)
-- No real user content or private project names
+| Area | Status | Notes |
+|------|--------|-------|
+| Catalog generation workflow | Planned | Human-approved metadata inventory → export JSON for Auditor paste |
+| Timeline renderer | Planned | Visual timeline from human-prepared exports — not shipped |
+| Optional Local Helper implementation | Future, optional | Local/offline suggestions only; human review required |
+| Dry-run executor design | Future | Plans human-reviewed first; execution approval-gated |
+| Real file operation helper | Future | Copy-first imports only with explicit per-action approval |
+| Deeper validation tooling | Future | Allowlist checks, dry-run reporting improvements |
+| Sample project packs | Future (v0.3 packs) | Fictional data only |
 
-**Goal:** Show how MoonPool batch lifecycle works without shipping real archives.
-
----
-
-## v0.4 — Stronger validation scripts
-
-- Path validation helpers (refuse non-allowlisted paths)
-- Dry-run reporting improvements
-- Optional checksum or manifest steps (with explicit approval gates)
-- Better scan_log and import_log append behaviour
-
-**Goal:** Scripts fail safely and predictably; humans stay in the loop.
+**Automation remains future and approval-gated.** No executor, scanner engine, or autonomous approval ships in the current template.
 
 ---
 
-## Future — Optional AI-assisted workflows
+## Future — optional assisted workflows
 
-Always **approval-gated**:
+Always **human-led** and **approval-gated**:
 
 - Metadata summaries after Level 1 inventory (human-reviewed)
 - Suggested folder names or tags (never auto-applied)
 - Assisted index updates from allowlisted paths only
+- Local Helper suggestions consumed only after human review
 - No whole-computer scanning, no unsupervised imports, no network by default
-
-**Goal:** AI helpers respect the same sixteen laws as every other tool.
 
 ---
 
@@ -107,7 +87,7 @@ Always **approval-gated**:
 - Whole-computer search
 - Automatic package installs or builds
 - Bundled private or single-user project stacks
-- Crypto-specific or sovereign-system integrations
+- Autonomous approval or unsupervised file operations
 
 ---
 

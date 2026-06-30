@@ -43,6 +43,7 @@ Human verification remains final. Chronology fields describe dates and uncertain
 - [11_Chronology/](../11_Chronology/) — date fields and confidence rules
 - [12_Review_Queue/](../12_Review_Queue/) — records needing human attention
 - [04_Lists_And_Records/file_catalog_schema.md](../04_Lists_And_Records/file_catalog_schema.md) — catalog + chronology fields
+- [14_Local_Helper/](../14_Local_Helper/) — optional helper planning (suggestions are not verified)
 
 ---
 

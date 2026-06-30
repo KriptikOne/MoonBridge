@@ -71,4 +71,12 @@ Filesystem dates may be misleading after copying, syncing, exporting, or migrati
 
 ---
 
-*Dates are evidence. Verification is human.*
+## Related
+
+- [12_Review_Queue/](../12_Review_Queue/) — human attention for uncertain dates (human-prepared, not auto-populated)
+- [13_Handover_Export/](../13_Handover_Export/) — handover templates for reviewed chronology
+- [04_Lists_And_Records/file_catalog_schema.md](../04_Lists_And_Records/file_catalog_schema.md) — catalog chronology fields
+
+---
+
+*Dates are evidence. Verification is human. Chronology is documentation-only — no scanning engine.*

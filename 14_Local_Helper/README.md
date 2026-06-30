@@ -62,9 +62,14 @@ See [Operating_Modes.md](Operating_Modes.md).
 
 ---
 
+## Related
+
+- [11_Chronology/](../11_Chronology/) · [12_Review_Queue/](../12_Review_Queue/) · [13_Handover_Export/](../13_Handover_Export/)
+- [file_catalog_schema.md](../04_Lists_And_Records/file_catalog_schema.md) — Local Helper suggestion fields
+
 ## Status in this template
 
-This folder is **planning and schema only**. No helper code, model integration, scanners, or automation ships in this release.
+This folder is **planning and schema only**. No helper code, model integration, scanners, or automation ships in this release. The helper does **not** run, scan, read, approve, or move files.
 
 ---
 

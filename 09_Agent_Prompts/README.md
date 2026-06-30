@@ -64,6 +64,10 @@ Agents must **not** infer approval from helper fields. `humanApproved: false` me
 
 Agents must **not** use helper suggestions as permission to scan, move, copy, delete, upload, edit allowlists, or run commands.
 
-## Not autonomous
+## Planning-only modules
+
+MoonBridge ships documentation and static tools only. Chronology, Review Queue, Handover Export, and Optional Local Helper planning do **not** run automatically. Helper suggestions are suggested, not verified.
+
+## Not an agent system
 
 These prompts **do not** make MoonBridge an agent. They prepare safe instructions for humans who choose to use AI tools later.

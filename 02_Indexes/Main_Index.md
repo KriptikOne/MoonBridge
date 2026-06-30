@@ -105,4 +105,4 @@ Update indexes when catalogs change, or keep indexes as the human-friendly summa
 
 ---
 
-*Last updated: 2026-06-30 (Optional Local Helper planning layer)*
+*Last updated: 2026-06-30 (v0.6.0-local-helper-planning — public template)*

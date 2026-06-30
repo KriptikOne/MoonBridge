@@ -104,15 +104,21 @@ Copy the entire `<MOONBRIDGE_ROOT>` folder to the new computer. See [Bridge_To_F
 
 ---
 
-## Next steps — usability layer
+## Next steps — public template modules
 
 After the five steps above:
 
-1. Open the static overview: [08_Human_Dashboard/dashboard.html](../08_Human_Dashboard/dashboard.html) (offline, no scanning)
-2. If you use AI assistants, browse [09_Agent_Prompts/](../09_Agent_Prompts/) for safe prompt templates
-3. Follow the human-first sequence in [10_Automation_Plans/Human_First_Workflow.md](../10_Automation_Plans/Human_First_Workflow.md) before considering any automation
+1. Open the static overview: [dashboard.html](../08_Human_Dashboard/dashboard.html) (offline, no scanning)
+2. Open the [MoonPool Auditor](../08_Human_Dashboard/moonpool_auditor.html) — built-in sample records or manually pasted catalog JSON; prepares action plans, **no execution**
+3. Copy [sample_file_catalog.json](../04_Lists_And_Records/sample_file_catalog.json) into Auditor catalog mode if you want catalog-driven planning (paste by hand)
+4. Read [Chronology](../11_Chronology/) for date fields and confidence (documentation-only)
+5. Use [Review Queue](../12_Review_Queue/) templates when dates need human attention
+6. Use [Handover Export](../13_Handover_Export/) templates when packaging reviewed chronology
+7. Browse [09_Agent_Prompts/](../09_Agent_Prompts/) if you use AI assistants
+8. Read [Optional Local Helper](../14_Local_Helper/) planning only if you want Assisted Mode notes — Basic Mode needs no helper
+9. Follow [Human_First_Workflow.md](../10_Automation_Plans/Human_First_Workflow.md) before considering any later automation
 
-Automation is **not** ready by default. These resources help you prepare structured context for future local agents — after your approval.
+Nothing runs automatically. These resources help you prepare structured context for **human-led** review — later workflows require explicit approval per action.
 
 ---
 

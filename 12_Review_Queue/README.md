@@ -30,4 +30,4 @@ Nothing is added here automatically by default. Humans or approved workflows fla
 - Queues are **not** populated by automatic scanning in this template
 - Human decision and `verifiedDate` are required for handover
 
-See [11_Chronology/](../11_Chronology/) · [13_Handover_Export/](../13_Handover_Export/)
+See [11_Chronology/](../11_Chronology/) · [13_Handover_Export/](../13_Handover_Export/) · [14_Local_Helper/](../14_Local_Helper/) (optional planning — suggestions are not verified)

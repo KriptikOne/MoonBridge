@@ -8,9 +8,9 @@
 
 MoonBridge helps you turn messy documents, assets, projects, notes, media, and archives into **structured, agent-readable local context** — safely, on your own machine.
 
-It is a **bridge** between ordinary human file chaos and the organised boundaries that local agents, AI-assisted tools, and future autonomous workflows need to work well. The main problem is simple: agents perform poorly and unsafely when pointed at unstructured, scattered data. MoonBridge creates safe boundaries **before** automation begins.
+It is a **bridge** between ordinary human file chaos and the organised boundaries that local agents and AI-assisted tools need to work well — safely, on your machine, with human approval at every risky step. The main problem is simple: agents perform poorly and unsafely when pointed at unstructured, scattered data. MoonBridge creates safe boundaries **before** any later approved workflow begins.
 
-The goal is **not** immediate full autonomy. The goal is to prepare clean local context so a future local agent can work safely and usefully — with your explicit approval at every risky step.
+The goal is **not** unsupervised automation. The goal is to prepare clean local context that humans can review — and that supports later approved workflows only when you explicitly allow each step.
 
 MoonBridge lives inside **`<MOONBRIDGE_ROOT>`** — the folder where you install or clone it. That may be a folder named MoonBridge in your home directory, but any location is fine.
 
@@ -68,10 +68,10 @@ structured local context
     ↓
 agent-readable projects
     ↓
-future autonomous local workflows (approval-gated)
+later approved workflows (human-led, approval-gated)
 ```
 
-Advanced automation comes **later** — and only with explicit approval per action. See [AGENTS.md](AGENTS.md) for the sixteen laws.
+Later automation comes **only** with explicit approval per action. See [AGENTS.md](AGENTS.md) for the sixteen laws.
 
 ---
 
@@ -110,17 +110,24 @@ MoonBridge now includes a **usability and preparation layer** — for humans fir
 | [09_Agent_Prompts/](09_Agent_Prompts/) | Reusable prompt templates with approval gates |
 | [10_Automation_Plans/](10_Automation_Plans/) | Future automation ideas — planning docs only |
 
-**Nothing in these folders runs automation by default.** The dashboard does not scan, read, or upload. The **MoonPool Auditor** works from built-in sample records or manually pasted catalog JSON — it prepares review notes, allowlist requests, and copy-only import plans as structured action records. Catalog mode is local and planning-only; it performs **no scanning**, **no disk-file reading**, and **no plan-running**. Prompt templates reinforce safety rules. Automation plans describe what might be possible later — after you organise data and approve each step.
+**Nothing in these folders runs automation by default.** The dashboard does not scan, read, or upload. The **MoonPool Auditor** is static local HTML — planning-only, no execution:
 
-MoonBridge prepares structured context so future local agents can work safely **later**, after human approval.
+| Auditor input | What happens |
+|---------------|--------------|
+| Built-in sample records | Default mode — review mock items and prepare action plans |
+| Manually pasted catalog JSON | Copy from `sample_file_catalog.json` (or your human-prepared export) into the Catalog Input panel — parsed in-browser only |
+
+The Auditor **prepares** review notes, allowlist requests, and copy-only import plans as Markdown and JSON. It does **not** run them, scan disk, load files automatically, or edit the allowlist. Prompt templates reinforce safety rules. Automation plans are **documentation-only** — they describe what might be possible later, after you organise data and approve each step.
+
+MoonBridge prepares structured context for **human-led** review and for later approved workflows.
 
 ---
 
 ## Chronology Core
 
-**Chronology is now a core MoonBridge planning module.** It helps place files, folders, catalogue records, collections, and projects in time — without scanning or acting on files by itself.
+**Chronology is a core MoonBridge planning module.** It helps humans place files, folders, catalogue records, collections, and projects in time — documentation and schema only, no scanning engine.
 
-MoonBridge tracks multiple date types: filesystem dates, document dates, event dates, inferred dates, and human-verified dates. **Date confidence** and **date source** are explicit on every record.
+Chronology **documents** multiple date types: filesystem dates, document dates, event dates, inferred dates, and human-verified dates. **Date confidence** and **date source** are explicit on every record.
 
 - **[11_Chronology/](11_Chronology/)** — date field definitions, confidence rules, sample reports, and timeline events
 - **[12_Review_Queue/](12_Review_Queue/)** — flags missing, conflicting, and suspicious dates for human attention
@@ -160,6 +167,49 @@ Suggested outputs are **not verified**. Human approval remains final. The Local 
 **The Local Helper may suggest. The human or rule system approves.**
 
 This template ships **planning docs only** — no helper code, model integration, or automation.
+
+---
+
+## New user path
+
+A canonical sequence for first-time users:
+
+| Step | Action |
+|------|--------|
+| 1 | Read this README |
+| 2 | Open [Quick Start](00_Read_Me_First/Quick_Start.md) |
+| 3 | Open [Human Dashboard](08_Human_Dashboard/dashboard.html) (static local HTML) |
+| 4 | Use [MoonPool](MoonPool/README.md) manually — copy files in; never whole-computer scan |
+| 5 | Review [MoonPool Auditor](08_Human_Dashboard/moonpool_auditor.html) — sample mode or pasted catalog JSON |
+| 6 | Try [sample catalog](04_Lists_And_Records/sample_file_catalog.json) in Auditor catalog mode (paste by hand) |
+| 7 | Understand [Chronology](11_Chronology/) — date fields and confidence (documentation-only) |
+| 8 | Use [Review Queue](12_Review_Queue/) when dates are uncertain — human-prepared flags |
+| 9 | Use [Handover Export](13_Handover_Export/) templates when packaging reviewed chronology |
+| 10 | Read [Optional Local Helper](14_Local_Helper/) planning **only if needed** — not required for Basic Mode |
+
+---
+
+## Module definitions
+
+Short, safety-bounded descriptions of each major module:
+
+**MoonPool** — Controlled file intake inside `<MOONBRIDGE_ROOT>`. Your real files enter only after you manually copy them. MoonPool is not your whole computer.
+
+**Human Dashboard** — Static local HTML overview (`dashboard.html`). Orientation and links only — no scanning, network, or automation.
+
+**MoonPool Auditor** — Static local HTML Action Planner (`moonpool_auditor.html`). Uses built-in sample records or manually pasted catalog JSON. Prepares action plans as Markdown/JSON; does not execute them or grant approval.
+
+**Catalog records** — Structured metadata lists (`sample_file_catalog.json`, schema in `file_catalog_schema.md`). Human-prepared or from approved Level 1 inventory. Catalog presence does not grant permission to act.
+
+**Chronology** — Documentation-only date fields, confidence rules, sample reports, and timeline JSON. Helps humans record dates and uncertainty. No scanning or automatic inference engine.
+
+**Review Queue** — Documentation and templates for date issues needing human attention. Human-prepared flags only — not auto-populated.
+
+**Handover Export** — Templates and sample JSON for packaging reviewed chronology. Prepares information for later use; does not grant permission to act.
+
+**Optional Local Helper planning** — Future optional local/offline suggestion layer (`14_Local_Helper/`). Planning docs and schema only — no helper or model ships. Basic Mode works without it.
+
+**Automation Plans** — Documentation-only ideas for future approval-gated workflows. No executor, scripts, or running agents in this folder.
 
 ---
 
@@ -243,7 +293,7 @@ MoonBridge can start on your current machine and later move to a more powerful c
 
 ## Version
 
-See [VERSION.md](VERSION.md) for the current bootstrap version.
+See [VERSION.md](VERSION.md) for the current version (`0.6.0-local-helper-planning`).
 
 ---
 

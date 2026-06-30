@@ -100,7 +100,7 @@ The Auditor **does not**:
 
 - Load files from disk automatically
 - Scan folders
-- Execute plans
+- Run or apply action plans (plans are prepared for human review only)
 - Edit the allowlist
 - Treat catalog presence as approval
 
