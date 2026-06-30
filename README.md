@@ -140,6 +140,26 @@ Chronology does **not** grant approval or perform actions. Review queues record 
 | Review Queue | [12_Review_Queue/](12_Review_Queue/) |
 | Chronology | [11_Chronology/](11_Chronology/) |
 | Handover Export | [13_Handover_Export/](13_Handover_Export/) |
+| Optional Local Helper | [14_Local_Helper/](14_Local_Helper/) |
+
+---
+
+## Optional Local Helper
+
+The **Optional Local Helper** is a planning layer for a future local or offline assistant. MoonBridge works fully in **Basic Mode** without AI or model use.
+
+| Mode | Description |
+|------|-------------|
+| **Basic Mode** | Inventory, metadata, chronology, review queues, handover — no helper required |
+| **Assisted Mode** | Optional local/offline suggestions for summaries, tags, risk notes, dates, and review priority |
+
+- **[14_Local_Helper/](14_Local_Helper/)** — principles, operating modes, suggestion fields, safety checklist, human review template
+
+Suggested outputs are **not verified**. Human approval remains final. The Local Helper does **not** run actions, scan folders, or grant permission to scan, move, copy, delete, upload, or execute.
+
+**The Local Helper may suggest. The human or rule system approves.**
+
+This template ships **planning docs only** — no helper code, model integration, or automation.
 
 ---
 
@@ -175,6 +195,7 @@ If you work with AI assistants, read [AGENTS.md](AGENTS.md) and [09_Agent_Prompt
 ├── 11_Chronology/         ← date fields, confidence, sample timelines
 ├── 12_Review_Queue/       ← human review for date issues
 ├── 13_Handover_Export/    ← chronology handover templates
+├── 14_Local_Helper/       ← optional helper planning (docs only)
 ├── MoonPool/              ← controlled file intake zone
 ├── Private_Do_Not_Scan/   ← sensitive material — never auto-scan
 ├── AGENTS.md              ← laws for AI assistants

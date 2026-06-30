@@ -22,6 +22,7 @@ Your human-readable map of MoonBridge. Update this by hand as you organise — o
 | Chronology | `11_Chronology/` | Date fields, confidence, sample timelines |
 | Review Queue | `12_Review_Queue/` | Human review for date issues |
 | Handover Export | `13_Handover_Export/` | Chronology handover templates |
+| Optional Local Helper | `14_Local_Helper/` | Helper planning docs (optional, not implemented) |
 | MoonPool | `MoonPool/` | User file intake |
 | Private | `Private_Do_Not_Scan/` | Sensitive — never scan |
 
@@ -88,6 +89,7 @@ Your human-readable map of MoonBridge. Update this by hand as you organise — o
 - [Chronology](../11_Chronology/)
 - [Review Queue](../12_Review_Queue/)
 - [Handover Export](../13_Handover_Export/)
+- [Optional Local Helper](../14_Local_Helper/)
 
 ---
 
@@ -103,4 +105,4 @@ Update indexes when catalogs change, or keep indexes as the human-friendly summa
 
 ---
 
-*Last updated: 2026-06-30 (Chronology Core Phase 2)*
+*Last updated: 2026-06-30 (Optional Local Helper planning layer)*

@@ -134,6 +134,30 @@ Catalog records may include optional chronology fields alongside standard metada
 
 ---
 
+## Local Helper suggestion fields
+
+Catalog records may include optional Local Helper suggestion fields when Assisted Mode is used in the future. See [14_Local_Helper/](../14_Local_Helper/) and [local_helper_output_fields.json](../14_Local_Helper/local_helper_output_fields.json).
+
+| Field | Description |
+|-------|-------------|
+| `localHelperEnabled` | Whether Assisted Mode suggestions apply to this record |
+| `helperSuggestedSummary` | Suggested short summary — not verified |
+| `helperSuggestedTags` | Suggested tag list — not verified |
+| `helperSuggestedCollection` | Suggested collection name — not verified |
+| `helperSuggestedRisk` | Suggested risk note — not verified |
+| `helperSuggestedDate` | Suggested date clue — not verified |
+| `helperDateSource` | Where the helper derived the date clue |
+| `helperConfidence` | `unknown`, `low`, `medium`, or `high` — helper confidence only |
+| `humanApproved` | `false` until a human explicitly confirms suggestions |
+
+### Local Helper safety
+
+- Helper suggestions are **not verified** — do not copy to `verifiedDate` or chronology verified fields without human review
+- `humanApproved` must remain **`false`** until a human confirms each accepted suggestion
+- Helper fields **do not grant** scan, move, copy, delete, upload, execution, or allowlist permission
+
+---
+
 ## Related files
 
 - [sample_file_catalog.json](sample_file_catalog.json) — public sample

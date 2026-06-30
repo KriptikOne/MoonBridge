@@ -54,6 +54,16 @@ Agents must **not** infer approval from chronology fields. Chronology describes 
 
 Agents must treat **inferred dates as unverified** unless both `verifiedDate` is set and human confirmation is documented. `dateConfidence: verified` applies only after explicit human review.
 
+## Local Helper suggestions as context
+
+Agents may receive **Local Helper suggestions** as context — Suggested Summary, Suggested Tags, Suggested Date, Suggested Risk, and related helper fields.
+
+Agents must treat helper output as **suggested, not verified**.
+
+Agents must **not** infer approval from helper fields. `humanApproved: false` means no human has confirmed the suggestion.
+
+Agents must **not** use helper suggestions as permission to scan, move, copy, delete, upload, edit allowlists, or run commands.
+
 ## Not autonomous
 
 These prompts **do not** make MoonBridge an agent. They prepare safe instructions for humans who choose to use AI tools later.

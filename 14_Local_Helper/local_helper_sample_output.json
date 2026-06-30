@@ -1,0 +1,56 @@
+{
+  "moonbridge_local_helper_sample_version": "0.1",
+  "sample_type": "local_helper_suggestion_sample",
+  "root_placeholder": "<MOONBRIDGE_ROOT>",
+  "note": "Fictional sample only. All values are suggestions — not verified. No helper code runs in this template.",
+  "records": [
+    {
+      "id": "catalog-record-sample-001",
+      "name": "Example_Project_Brief.pdf",
+      "item_type": "document",
+      "mock_path": "<MOONBRIDGE_ROOT>/MoonPool/00_Staging_Do_Not_Scan/Example_Project_Brief.pdf",
+      "localHelperEnabled": true,
+      "helperSuggestedSummary": "Sample project brief document — suggested from filename and path label only.",
+      "helperSuggestedTags": ["sample", "brief", "planning"],
+      "helperSuggestedCollection": "Sample Collection A",
+      "helperSuggestedRisk": "low",
+      "helperSuggestedDate": "2022-03",
+      "helperDateSource": "filename",
+      "helperConfidence": "medium",
+      "humanApproved": false,
+      "chronologyNotes": "Helper suggested date only — not verified. Do not set verifiedDate from helper output."
+    },
+    {
+      "id": "catalog-record-sample-002",
+      "name": "Budget_Template.xlsx",
+      "item_type": "spreadsheet",
+      "mock_path": "<MOONBRIDGE_ROOT>/MoonPool/01_Documents/Working/Budget_Template.xlsx",
+      "localHelperEnabled": true,
+      "helperSuggestedSummary": "Spreadsheet template — suggested likely document type from extension.",
+      "helperSuggestedTags": ["spreadsheet", "template", "working"],
+      "helperSuggestedCollection": "Working Samples",
+      "helperSuggestedRisk": "low",
+      "helperSuggestedDate": null,
+      "helperDateSource": "",
+      "helperConfidence": "unknown",
+      "humanApproved": false,
+      "chronologyNotes": "No date clue suggested. Review Required if used for chronology."
+    },
+    {
+      "id": "catalog-record-sample-003",
+      "name": "Archive_Letter_Sample.pdf",
+      "item_type": "document",
+      "mock_path": "<MOONBRIDGE_ROOT>/MoonPool/01_Documents/Working/Archive_Letter_Sample.pdf",
+      "localHelperEnabled": true,
+      "helperSuggestedSummary": "Possible archival correspondence — suggestion only, content not read in this sample.",
+      "helperSuggestedTags": ["archive", "correspondence", "sample"],
+      "helperSuggestedCollection": "Sample Collection B",
+      "helperSuggestedRisk": "medium",
+      "helperSuggestedDate": "2018-06",
+      "helperDateSource": "filename_and_metadata_label",
+      "helperConfidence": "low",
+      "humanApproved": false,
+      "chronologyNotes": "Weak date clue — send to Review Queue if adopted. Suggestion is not verified."
+    }
+  ]
+}

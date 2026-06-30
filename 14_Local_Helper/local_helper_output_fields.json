@@ -1,0 +1,12 @@
+{
+  "_description": "Local Helper suggestion field structure for MoonBridge catalog records. Template only — not live helper output.",
+  "localHelperEnabled": true,
+  "helperSuggestedSummary": "",
+  "helperSuggestedTags": [],
+  "helperSuggestedCollection": "",
+  "helperSuggestedRisk": "",
+  "helperSuggestedDate": null,
+  "helperDateSource": "",
+  "helperConfidence": "unknown",
+  "humanApproved": false
+}

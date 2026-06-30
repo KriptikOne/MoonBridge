@@ -53,6 +53,8 @@ Future local agents should consume **human-approved action plans** and **catalog
 
 Future local agents may consume **chronology records** as structured context — date fields, confidence labels, Review Queue summaries, and handover manifests. They should **not** use chronology fields as permission to scan, move, copy, delete, upload, or run commands. Inferred dates remain unverified until a human sets `verifiedDate`.
 
+Future local agents may consume **Local Helper suggestions** as structured context — Suggested Summary, Suggested Tags, Suggested Date, and related fields from [14_Local_Helper/](../14_Local_Helper/). Helper suggestions should **support review, not replace approval**. Agents should **not** discover boundaries by scanning raw folders. Helper output does **not** override MoonBridge approval levels. Treat all helper fields as suggested until `humanApproved` is set by a human.
+
 ---
 
 ## Introduction sequence (recommended)

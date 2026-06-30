@@ -49,10 +49,20 @@ A simple plan for the public template. Dates are tentative; scope may shift base
 
 **Not included:** automatic chronology scanning, auto-populated review queues, or auto-generated timeline exports.
 
-**Later phase (not in current release):**
+### Optional Local Helper planning layer *(current / planning only)*
 
-- Optional Local Helper — suggested dates only, never verified without human confirmation
-- Future helper execution — approval-gated; does not exist today
+- [14_Local_Helper/](14_Local_Helper/) — principles, Basic Mode / Assisted Mode, suggestion fields, sample output, safety checklist, human review template
+- **Basic Mode** — full MoonBridge without AI or model use (not inferior or incomplete)
+- **Assisted Mode** — optional local/offline suggestions only; all output marked suggested, not verified
+
+**Not included:** helper code, model integration, automatic suggestions, file scanning by helper, or helper-driven approvals.
+
+**Future implementation (optional, approval-gated):**
+
+- Local/offline helper that suggests summaries, tags, risk notes, and date clues
+- Human review required before suggestions enter verified catalog or handover fields
+- No network by default; no command execution; no file actions by helper
+- Future helper execution remains separate — does not exist today
 
 ---
 

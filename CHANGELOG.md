@@ -61,13 +61,18 @@ Format based on [Keep a Changelog](https://keepachangelog.com/). This project us
 
 ### Added
 
+- **Optional Local Helper planning layer** — docs, operating modes, suggestion fields, sample output, safety checklist, and human review template in `14_Local_Helper/`
+- Documentation updates in README, Main Index, file catalog schema, Agent Prompts, and Future Local Agent Notes
+
+### Added (prior unreleased)
+
 - **Chronology Core Phase 2** — Review Queue and Handover Export support for Chronology Core
 - `12_Review_Queue/Review_Queue_Rules.md` — flagging rules for date issues needing human attention
 - `12_Review_Queue/Review_Queue_Record_Template.md` — per-record review template
 - `13_Handover_Export/` — chronology summary template, timeline export sample, handover manifest template
 - Documentation links in README, Main Index, file catalog schema, Human Dashboard, Agent Prompts, and Automation Plans
 
-### Added (prior unreleased)
+### Added (earlier unreleased)
 
 - `08_Human_Dashboard/moonpool_auditor.html` — initial MoonPool Auditor Action Planner (sample data only; generates Markdown/JSON action plans; no file operations)
 - Catalog-driven Auditor support — pasted JSON only via Catalog Input panel (no fetch, FileReader, or persistence)
