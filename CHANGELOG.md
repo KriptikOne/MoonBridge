@@ -62,6 +62,10 @@ Format based on [Keep a Changelog](https://keepachangelog.com/). This project us
 ### Added
 
 - `08_Human_Dashboard/moonpool_auditor.html` — initial MoonPool Auditor Action Planner (sample data only; generates Markdown/JSON action plans; no file operations)
+- Catalog-driven Auditor support — pasted JSON only via Catalog Input panel (no fetch, FileReader, or persistence)
+- `04_Lists_And_Records/sample_file_catalog.json` — public sample catalog
+- `04_Lists_And_Records/file_catalog_schema.md` — catalog schema documentation
+- `08_Human_Dashboard/auditor_catalog_guide.md` — catalog mode guide
 
 ### Notes
 

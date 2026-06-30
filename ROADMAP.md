@@ -28,17 +28,18 @@ A simple plan for the public template. Dates are tentative; scope may shift base
 
 **Not included in v0.2:** live scanning, auto-indexing, running agents, or background automation.
 
-### MoonPool Auditor Action Planner *(current / next work)*
+### MoonPool Auditor Action Planner *(current)*
 
 - Initial `moonpool_auditor.html` — OS-style local utility for action-plan generation
 - Sample/mock MoonPool navigation; Columns, List, Grid views
 - Inspector pane and Generated Action Plan panel (Markdown + JSON)
 - Prepare approval, quarantine, allowlist, import, and review plans — **no execution**
+- **Catalog-driven display** — paste catalog JSON manually (`sample_file_catalog.json` as public example)
 
 **Future (not yet built):**
 
-- Catalog-driven Auditor fed by approved metadata-only inventories
-- Approved local helper executor that runs only human-confirmed plans
+- Private catalogs from approved metadata-only inventories (human exports JSON for paste)
+- Approved local helper executor that runs only human-confirmed plans — **execution does not exist today**
 
 ---
 
@@ -71,7 +72,7 @@ Always **approval-gated**:
 - Metadata summaries after Level 1 inventory (human-reviewed)
 - Suggested folder names or tags (never auto-applied)
 - Assisted index updates from allowlisted paths only
-- No whole-computer scanning, no automatic imports, no network by default
+- No whole-computer scanning, no unsupervised imports, no network by default
 
 **Goal:** AI helpers respect the same sixteen laws as every other tool.
 

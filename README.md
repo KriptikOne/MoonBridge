@@ -110,7 +110,7 @@ MoonBridge now includes a **usability and preparation layer** — for humans fir
 | [09_Agent_Prompts/](09_Agent_Prompts/) | Reusable prompt templates with approval gates |
 | [10_Automation_Plans/](10_Automation_Plans/) | Future automation ideas — planning docs only |
 
-**Nothing in these folders runs automation by default.** The dashboard does not scan, read, or upload. The **MoonPool Auditor** prepares review notes, allowlist requests, and copy-only import plans as structured action records — it does **not** execute them. Prompt templates reinforce safety rules. Automation plans describe what might be possible later — after you organise data and approve each step.
+**Nothing in these folders runs automation by default.** The dashboard does not scan, read, or upload. The **MoonPool Auditor** works from built-in sample records or manually pasted catalog JSON — it prepares review notes, allowlist requests, and copy-only import plans as structured action records. Catalog mode is local and planning-only; it performs **no scanning**, **no disk-file reading**, and **no plan-running**. Prompt templates reinforce safety rules. Automation plans describe what might be possible later — after you organise data and approve each step.
 
 MoonBridge prepares structured context so future local agents can work safely **later**, after human approval.
 

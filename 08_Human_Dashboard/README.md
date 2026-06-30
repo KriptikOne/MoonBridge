@@ -7,7 +7,8 @@ A **static, offline overview** and **action-planning surface** for MoonBridge.
 | File | Purpose |
 |------|---------|
 | [dashboard.html](dashboard.html) | Local HTML overview — open in any browser, works offline |
-| [moonpool_auditor.html](moonpool_auditor.html) | **MoonPool Auditor Action Planner** — prepares approval records, does not execute them |
+| [moonpool_auditor.html](moonpool_auditor.html) | **MoonPool Auditor Action Planner** — sample mode + pasted catalog mode; prepares approval records, does not execute them |
+| [auditor_catalog_guide.md](auditor_catalog_guide.md) | How to use catalog-driven Auditor mode |
 | [dashboard_data_example.json](dashboard_data_example.json) | Sample dashboard data only (not live) |
 | [Dashboard_Guide.md](Dashboard_Guide.md) | How to use the dashboard and Auditor safely |
 
@@ -18,9 +19,11 @@ A **static, offline overview** and **action-planning surface** for MoonBridge.
 | **dashboard.html** | Orientation map with links to documentation folders |
 | **moonpool_auditor.html** | MoonPool Auditor Action Planner — human review and structured action-plan generation |
 
-The **MoonPool Auditor** generates approval notes, quarantine notes, allowlist requests, copy-only import plans, and review summaries as Markdown and JSON. A human (or a separate approved helper, Grok session, or local agent) may review and execute those plans later.
+The **MoonPool Auditor** works from **built-in sample records** or **manually pasted catalog JSON** (copy from `sample_file_catalog.json` — no automatic file loading). It generates approval notes, quarantine notes, allowlist requests, copy-only import plans, and review summaries as Markdown and JSON. A human (or a separate approved helper, Grok session, or local agent) may review those plans later.
 
-**The Auditor does not:** move, copy, delete, scan, upload, read file contents, edit allowlists, or execute commands.
+**Catalog mode is planning-only.** Pasted JSON is parsed in-browser only — not uploaded, stored, scanned, or persisted.
+
+**The Auditor does not:** move, copy, delete, scan, upload, read file contents, load files from disk, edit allowlists, or execute commands.
 
 ## Important
 

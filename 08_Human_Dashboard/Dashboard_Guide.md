@@ -60,6 +60,19 @@ Drag-and-drop is **visual planning only** — dropped files are counted but not 
 
 ---
 
+## Catalog-driven Auditor mode
+
+1. Open `sample_file_catalog.json` in a text editor (do not expect the Auditor to load it automatically)
+2. Copy the full JSON and paste into the **Catalog Input** textarea in `moonpool_auditor.html`
+3. Click **Load Catalog Text** — status should confirm planning-only load
+4. Review records in Columns, List, or Grid view
+5. Prepare action plans — copy Markdown or JSON for human review
+6. Click **Reset to Sample Data** to return to built-in samples
+
+**Do not treat generated plans as execution.** Human confirmation is required before any helper, agent, or script acts. Catalog presence does not grant approval.
+
+---
+
 ## How to open it
 
 1. Navigate to `<MOONBRIDGE_ROOT>/08_Human_Dashboard/`

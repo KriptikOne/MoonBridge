@@ -173,6 +173,70 @@
       border-radius: 4px;
     }
     .drop-notice.visible { display: block; }
+    .catalog-panel {
+      margin: 0.5rem 0.65rem 0;
+      padding: 0.5rem 0.65rem;
+      background: var(--elevated);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+    .catalog-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .catalog-head h2 {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+    }
+    .catalog-actions { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+    .catalog-actions .btn { font-size: 0.65rem; padding: 0.28rem 0.5rem; }
+    .catalog-note {
+      font-size: 0.65rem;
+      color: var(--dim);
+      margin-bottom: 0.35rem;
+      line-height: 1.4;
+    }
+    .catalog-textarea {
+      width: 100%;
+      min-height: 52px;
+      max-height: 90px;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      line-height: 1.4;
+      padding: 0.4rem 0.5rem;
+      background: #080808;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      resize: vertical;
+    }
+    .catalog-textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 1px rgba(255, 204, 0, 0.2);
+    }
+    .catalog-status {
+      font-size: 0.65rem;
+      margin-top: 0.35rem;
+      min-height: 1em;
+    }
+    .catalog-status.ok { color: var(--safe); }
+    .catalog-status.err { color: var(--danger); }
+    .catalog-status.neutral { color: var(--dim); }
+    .mode-pill {
+      font-size: 0.6rem;
+      padding: 0.15rem 0.4rem;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .mode-pill.catalog { border-color: var(--border-strong); color: var(--gold); }
     .browser {
       flex: 1;
       overflow: auto;
@@ -450,6 +514,19 @@
       <nav class="sidebar" id="sidebar" aria-label="MoonPool navigation"></nav>
 
       <div class="main-col">
+        <section class="catalog-panel" aria-label="Catalog Input">
+          <div class="catalog-head">
+            <h2>CATALOG INPUT</h2>
+            <span class="mode-pill" id="modePill">Sample data</span>
+            <div class="catalog-actions">
+              <button type="button" class="btn btn-primary" id="loadCatalog">Load Catalog Text</button>
+              <button type="button" class="btn" id="resetSample">Reset to Sample Data</button>
+            </div>
+          </div>
+          <p class="catalog-note">Catalog text is parsed in-browser only. It is not uploaded, stored, scanned, or persisted. Copy JSON from <code>04_Lists_And_Records/sample_file_catalog.json</code> manually.</p>
+          <textarea class="catalog-textarea" id="catalogText" rows="3" placeholder='Paste catalog JSON here — must include a "records" array…' aria-label="Catalog JSON text"></textarea>
+          <p class="catalog-status neutral" id="catalogStatus" role="status">Using built-in sample records. No files were read or changed.</p>
+        </section>
         <div class="dropzone" id="dropzone">
           Planning intake only — dropped files are not read, copied, moved, or stored.
         </div>
@@ -495,7 +572,17 @@
   'use strict';
 
   var ROOT = '<MOONBRIDGE_ROOT>';
-  var ZONES = {
+  var ZONE_MAP = {
+    '00_Staging_Do_Not_Scan': 'staging',
+    'Staging': 'staging',
+    'Approved_Batches': 'approved',
+    'Working': 'working',
+    'Finished': 'finished',
+    'Archive': 'archive',
+    '99_Quarantine_Do_Not_Scan': 'quarantine',
+    'Quarantine': 'quarantine'
+  };
+  var SAMPLE_ZONES = {
     moonpool: { label: 'MoonPool', section: 'MOONPOOL', path: ROOT + '/MoonPool', items: [] },
     staging: {
       label: '00_Staging_Do_Not_Scan', section: 'REVIEW ZONES', path: ROOT + '/MoonPool/00_Staging_Do_Not_Scan',
@@ -530,8 +617,30 @@
     }
   };
 
+  function cloneZones(src) {
+    var out = {};
+    Object.keys(src).forEach(function (k) {
+      out[k] = {
+        label: src[k].label,
+        section: src[k].section,
+        path: src[k].path,
+        badge: src[k].badge,
+        items: src[k].items.map(function (it) {
+          var c = {};
+          Object.keys(it).forEach(function (ik) { c[ik] = it[ik]; });
+          return c;
+        })
+      };
+    });
+    return out;
+  }
+
+  var ZONES = cloneZones(SAMPLE_ZONES);
   var zoneOrder = ['moonpool', 'staging', 'approved', 'working', 'finished', 'archive', 'quarantine'];
-  var state = { view: 'columns', zone: 'staging', item: null, planTab: 'markdown', lastMd: '', lastJson: '' };
+  var state = {
+    view: 'columns', zone: 'staging', item: null, planTab: 'markdown',
+    lastMd: '', lastJson: '', catalogMode: false, catalogMeta: null
+  };
 
   var sidebarEl = document.getElementById('sidebar');
   var browserEl = document.getElementById('browser');
@@ -539,6 +648,113 @@
   var planEl = document.getElementById('planOutput');
   var dropzone = document.getElementById('dropzone');
   var dropNotice = document.getElementById('dropNotice');
+  var catalogText = document.getElementById('catalogText');
+  var catalogStatus = document.getElementById('catalogStatus');
+  var modePill = document.getElementById('modePill');
+
+  function setCatalogStatus(msg, type) {
+    catalogStatus.textContent = msg;
+    catalogStatus.className = 'catalog-status ' + (type || 'neutral');
+  }
+
+  function mapZoneKey(zoneStr) {
+    if (!zoneStr) return null;
+    if (ZONE_MAP[zoneStr]) return ZONE_MAP[zoneStr];
+    var lower = zoneStr.toLowerCase();
+    var keys = Object.keys(ZONE_MAP);
+    for (var i = 0; i < keys.length; i++) {
+      if (keys[i].toLowerCase() === lower) return ZONE_MAP[keys[i]];
+    }
+    return null;
+  }
+
+  function recordToItem(rec, index) {
+    var path = rec.mock_path || rec.approved_path || '';
+    var seq = (typeof index === 'number' ? index : 0) + 1;
+    var fallbackId = 'catalog-record-' + ('00' + seq).slice(-3);
+    return {
+      id: rec.id || fallbackId,
+      name: rec.name || 'unnamed',
+      type: rec.item_type || 'unknown',
+      size: rec.size_label || '—',
+      modified: rec.modified_label || '—',
+      risk: rec.risk || 'low',
+      status: rec.review_status || 'pending',
+      catalogPath: path,
+      catalogZone: rec.zone || '',
+      catalogRecordId: rec.id || fallbackId,
+      recommendedNextStep: rec.recommended_next_step || '',
+      notes: rec.notes || '',
+      fromCatalog: true
+    };
+  }
+
+  function clearZoneItems() {
+    zoneOrder.forEach(function (k) {
+      if (k !== 'moonpool') ZONES[k].items = [];
+    });
+  }
+
+  function loadCatalogFromText() {
+    var raw = catalogText.value.trim();
+    if (!raw) {
+      setCatalogStatus('Paste catalog JSON before loading.', 'err');
+      return;
+    }
+    var data;
+    try {
+      data = JSON.parse(raw);
+    } catch (e) {
+      setCatalogStatus('Invalid JSON — could not parse catalog text.', 'err');
+      return;
+    }
+    if (!data.records || !Array.isArray(data.records)) {
+      setCatalogStatus('Invalid catalog — missing "records" array.', 'err');
+      return;
+    }
+    if (!data.records.length) {
+      setCatalogStatus('Catalog has no records.', 'err');
+      return;
+    }
+    clearZoneItems();
+    var skipped = 0;
+    data.records.forEach(function (rec, index) {
+      var zk = mapZoneKey(rec.zone);
+      if (!zk || !ZONES[zk]) { skipped++; return; }
+      ZONES[zk].items.push(recordToItem(rec, index));
+    });
+    state.catalogMode = true;
+    state.catalogMeta = {
+      version: data.moonbridge_catalog_version,
+      type: data.catalog_type,
+      scan_scope: data.scan_scope
+    };
+    state.zone = 'staging';
+    state.item = null;
+    modePill.textContent = 'Catalog data';
+    modePill.className = 'mode-pill catalog';
+    var msg = 'Catalog loaded for planning. No files were read or changed. Records: ' + data.records.length;
+    if (skipped) msg += ' (' + skipped + ' skipped — unknown zone)';
+    setCatalogStatus(msg, 'ok');
+    renderSidebar();
+    renderBrowser();
+    renderInspector(null);
+  }
+
+  function resetToSample() {
+    ZONES = cloneZones(SAMPLE_ZONES);
+    state.catalogMode = false;
+    state.catalogMeta = null;
+    state.zone = 'staging';
+    state.item = null;
+    catalogText.value = '';
+    modePill.textContent = 'Sample data';
+    modePill.className = 'mode-pill';
+    setCatalogStatus('Using built-in sample records. No files were read or changed.', 'neutral');
+    renderSidebar();
+    renderBrowser();
+    renderInspector(null);
+  }
 
   function riskBadge(r) {
     var c = r === 'high' ? 'badge-high' : r === 'medium' ? 'badge-med' : 'badge-low';
@@ -643,12 +859,21 @@
 
   function renderInspector(item) {
     if (!item) {
-      inspectorEl.innerHTML = '<p class="inspector-note">Select a sample item to inspect mock metadata.</p><p class="inspector-note">Sample metadata only. No real file was read.</p>';
+      inspectorEl.innerHTML = '<p class="inspector-note">Select an item to inspect metadata labels.</p><p class="inspector-note">Sample or catalog metadata only. No real file was read.</p>';
       return;
     }
     var z = ZONES[state.zone];
-    var path = z.path + '/' + item.name;
+    var path = item.catalogPath || (z.path + '/' + item.name);
+    var nextStep = item.recommendedNextStep || 'Review item, then prepare an action record for human confirmation.';
+    var notes = item.notes || 'Metadata labels only. No real file was read.';
+    var sourceLine = item.fromCatalog
+      ? '<div class="meta-row"><span class="k">Source</span><span class="v">Pasted catalog</span></div>'
+      : '';
+    var zoneLine = item.catalogZone
+      ? '<div class="meta-row"><span class="k">Catalog zone</span><span class="v">' + item.catalogZone + '</span></div>'
+      : '';
     inspectorEl.innerHTML =
+      sourceLine + zoneLine +
       '<div class="meta-row"><span class="k">Name</span><span class="v">' + item.name + '</span></div>' +
       '<div class="meta-row"><span class="k">Type</span><span class="v">' + item.type + '</span></div>' +
       '<div class="meta-row"><span class="k">Size</span><span class="v">' + item.size + '</span></div>' +
@@ -656,8 +881,8 @@
       '<div class="meta-row"><span class="k">Risk</span><span class="v">' + riskBadge(item.risk) + '</span></div>' +
       '<div class="meta-row"><span class="k">Status</span><span class="v">' + item.status + '</span></div>' +
       '<div class="meta-path">' + path + '</div>' +
-      '<p class="inspector-note">Recommended manual next step: review item, then prepare an action record for human confirmation.</p>' +
-      '<p class="inspector-note">Sample metadata only. No real file was read.</p>';
+      '<p class="inspector-note"><strong>Recommended next step:</strong> ' + nextStep + '</p>' +
+      '<p class="inspector-note">' + notes + '</p>';
   }
 
   var ACTION_META = {
@@ -677,7 +902,10 @@
       state.lastMd = state.lastJson = '';
       return;
     }
-    var exactPath = z.path + '/' + item.name;
+    var exactPath = item.catalogPath || (z.path + '/' + item.name);
+    var scanScope = state.catalogMode
+      ? (state.catalogMeta && state.catalogMeta.scan_scope ? state.catalogMeta.scan_scope : 'catalog labels only — pasted text')
+      : 'none — built-in sample metadata only';
     var allowed = [];
     var forbidden = ['whole-computer scanning', 'automatic execution', 'network access', 'filesystem write', 'allowlist edit by Auditor'];
     if (actionKey === 'allowlist_request') {
@@ -693,11 +921,18 @@
       allowed = ['human review', 'documentation update', 'manual next step planning'];
     }
 
+    var catBlock = '';
+    if (item.fromCatalog || item.catalogRecordId) {
+      catBlock = '**Catalog record id:** ' + (item.catalogRecordId || item.id) + '\n' +
+        '**Catalog source:** pasted_catalog_text\n' +
+        '**Original catalog zone:** ' + (item.catalogZone || state.zone) + '\n';
+    }
     var md = '# MoonBridge Action Plan — ' + meta.title + '\n\n' +
       '**Action type:** ' + meta.title + '\n' +
       '**Approval level:** ' + meta.level + '\n' +
       '**Exact path:** `' + exactPath + '`\n' +
       '**Item:** ' + item.name + ' (' + item.type + ')\n' +
+      catBlock +
       '**Reason:** ' + meta.reason + '\n' +
       '**Human review status:** pending — Auditor does not grant approval\n\n' +
       '## Allowed actions (after human confirmation)\n' +
@@ -726,8 +961,13 @@
       files_changed: false,
       network_access: false,
       filesystem_write: false,
-      scan_scope: 'none — sample metadata only'
+      scan_scope: scanScope
     };
+    if (item.fromCatalog || item.catalogRecordId) {
+      json.catalog_record_id = item.catalogRecordId || item.id;
+      json.catalog_source = 'pasted_catalog_text';
+      json.original_catalog_zone = item.catalogZone || '';
+    }
 
     state.lastMd = md;
     state.lastJson = JSON.stringify(json, null, 2);
@@ -782,6 +1022,9 @@
       showPlan();
     });
   });
+
+  document.getElementById('loadCatalog').addEventListener('click', loadCatalogFromText);
+  document.getElementById('resetSample').addEventListener('click', resetToSample);
 
   document.getElementById('copyMd').addEventListener('click', function () { copyText(state.lastMd); });
   document.getElementById('copyJson').addEventListener('click', function () { copyText(state.lastJson); });

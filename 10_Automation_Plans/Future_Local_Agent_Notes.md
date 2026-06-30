@@ -47,7 +47,9 @@ MoonBridge front-loads that structure so the agent starts with a map, not a myst
 
 The initial [MoonPool Auditor](../08_Human_Dashboard/moonpool_auditor.html) generates structured action plans (Markdown and JSON) for human review. A future local agent should **consume human-approved action plans** rather than guessing next steps from raw folder layouts.
 
-The Auditor does not execute plans. Execution remains a separate, explicitly approved step — by a helper script, Grok session, or local agent operating under AGENTS.md.
+The Auditor only prepares plans. Execution remains a separate, explicitly approved step — by a helper script, Grok session, or local agent operating under AGENTS.md.
+
+Future local agents should consume **human-approved action plans** and **catalog records** as structured context. They should not discover boundaries by scanning raw folders. **Catalog presence does not override approval levels.**
 
 ---
 

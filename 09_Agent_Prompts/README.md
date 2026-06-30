@@ -44,6 +44,8 @@ Generated plans from [moonpool_auditor.html](../08_Human_Dashboard/moonpool_audi
 
 The Auditor prepares approval records — it does not execute them. An agent receiving a pasted plan must still request explicit human confirmation before any risky action.
 
+Agents may also receive **catalog excerpts** as context. Agents must **not** infer approval from catalog presence alone. Catalog records do not grant permission to scan, read, move, copy, or execute anything.
+
 ## Not autonomous
 
 These prompts **do not** make MoonBridge an agent. They prepare safe instructions for humans who choose to use AI tools later.
