@@ -27,7 +27,7 @@ When you or an agent makes a non-default choice, add an entry:
 
 **Reason:** Establish safe generic structure before any user content or scanning.
 
-**Paths affected:** `~/MoonBridge/` (entire tree created)
+**Paths affected:** `<MOONBRIDGE_ROOT>/` (entire tree created)
 
 **Reversible:** Yes — folders can be removed manually if needed (Level 5 approval).
 
@@ -39,7 +39,7 @@ When you or an agent makes a non-default choice, add an entry:
 
 **Reason:** Level 0 bootstrap prohibits destructive actions; unknown prior content must be preserved until reviewed.
 
-**Paths affected:** `~/MoonBridge/` (structure created alongside any pre-existing content)
+**Paths affected:** `<MOONBRIDGE_ROOT>/` (structure created alongside any pre-existing content)
 
 **Reversible:** Human may reorganise later with explicit Level 5 approval.
 

@@ -59,18 +59,18 @@ The inventory script and any agent must refuse:
 ```
 ~
 /
-$HOME
-~/Desktop
-~/Documents
-~/Downloads
+<HOME>
+<HOME>/Desktop
+<HOME>/Documents
+<HOME>/Downloads
 mounted drives (e.g. /media, /mnt, /Volumes)
 ..  (parent traversal)
 ```
 
 Also refused:
 
-- `~/MoonBridge` (root)
-- `~/MoonBridge/MoonPool` (root)
+- `<MOONBRIDGE_ROOT>` (root)
+- `<MOONBRIDGE_ROOT>/MoonPool` (root)
 - Any `Approved_Batches` folder itself (not a child batch inside it)
 - `MoonPool/00_Staging_Do_Not_Scan/`
 - `MoonPool/99_Quarantine_Do_Not_Scan/`
@@ -139,7 +139,7 @@ Flags are hints for human review, not automated actions.
 
 ## No default scan targets
 
-Scripts must **never** ship with fallback paths like Desktop, Documents, or `~`. Every run requires an explicit path argument that matches the allowlist.
+Scripts must **never** ship with fallback paths like common home-folder locations or `~`. Every run requires an explicit path argument that matches the allowlist.
 
 ---
 

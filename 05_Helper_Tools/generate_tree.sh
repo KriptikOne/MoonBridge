@@ -1,6 +1,6 @@
 #!/bin/bash
 # generate_tree.sh — Print folder tree of MoonBridge only
-# Does NOT scan outside ~/MoonBridge.
+# Does NOT scan outside <MOONBRIDGE_ROOT>.
 # Portable shell script for Unix-like systems.
 # Run with: bash generate_tree.sh
 # Do NOT chmod +x without human review.

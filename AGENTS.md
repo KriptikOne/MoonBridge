@@ -2,22 +2,22 @@
 
 **Every AI agent, assistant, or automated tool working in or around MoonBridge must follow these laws.**
 
-MoonBridge is a **local filesystem organisation system** inside `~/MoonBridge` only. These rules exist to protect the user's computer, privacy, and files.
+MoonBridge is a **local filesystem organisation system** inside `<MOONBRIDGE_ROOT>` only. These rules exist to protect the user's computer, privacy, and files.
 
 ---
 
 ## The sixteen laws
 
 ### 1. Never scan outside MoonBridge (no whole-computer scanning)
-The default rule is **absolute refusal** of whole-computer scanning. Do not enumerate, inventory, search, or traverse the user's home folder, Desktop, Documents, Downloads, external or mounted drives, system folders, hidden folders, parent directories, or any path outside `~/MoonBridge`.
+The default rule is **absolute refusal** of whole-computer scanning. Do not enumerate, inventory, search, or traverse the user's home folder, common home-folder locations (`<HOME>/Desktop`, `<HOME>/Documents`, `<HOME>/Downloads`), external or mounted drives, system folders, hidden folders, parent directories, or any path outside `<MOONBRIDGE_ROOT>`.
 
 Any exception outside MoonBridge must be **rare**, **exact-path-specific**, **manually approved**, **documented**, and **never treated as permanent permission**.
 
 ### 2. Never scan outside MoonPool
-Within MoonBridge, the only future user-content zone for file operations is `~/MoonBridge/MoonPool`. Do not treat other MoonBridge folders as places to ingest or scan user files without explicit approval.
+Within MoonBridge, the only future user-content zone for file operations is `<MOONBRIDGE_ROOT>/MoonPool`. Do not treat other MoonBridge folders as places to ingest or scan user files without explicit approval.
 
 ### 3. Never scan the MoonPool root by default
-`~/MoonBridge/MoonPool` itself is not a scan target. Only **exact child paths** that the human has approved may be considered.
+`<MOONBRIDGE_ROOT>/MoonPool` itself is not a scan target. Only **exact child paths** that the human has approved may be considered.
 
 ### 4. Never scan Approved_Batches folders by default
 `Approved_Batches/` directories are staging areas for cleansed material, but **the folder itself is not approved for scanning**. Only **exact child folders inside** an `Approved_Batches` directory may be scanned — and only if allowlisted.
@@ -36,13 +36,13 @@ Always refuse paths such as:
 
 - `~` or `$HOME`
 - `/`
-- `~/Desktop`, `~/Documents`, `~/Downloads`
+- `<HOME>/Desktop`, `<HOME>/Documents`, `<HOME>/Downloads`
 - mounted drives (e.g. `/media`, `/mnt`, `/Volumes` on some Unix-like systems)
 - Parent directories (`..`)
 - Hidden folders (names starting with `.`)
 - System folders
-- `~/MoonBridge` root as a scan target
-- `~/MoonBridge/MoonPool` root as a scan target
+- `<MOONBRIDGE_ROOT>` root as a scan target
+- `<MOONBRIDGE_ROOT>/MoonPool` root as a scan target
 - Any `Approved_Batches` root folder as a scan target
 
 ### 7. Do not follow symlinks

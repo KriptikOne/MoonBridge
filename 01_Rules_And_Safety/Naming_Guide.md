@@ -93,7 +93,7 @@ Avoid: `final`, `final_FINAL`, `copy`, `copy 2`
 When adding to `approved_scan_directories.txt`, use **full absolute paths**:
 
 ```
-/Users/yourname/MoonBridge/MoonPool/01_Documents/Approved_Batches/2026-06_Test
+<MOONBRIDGE_ROOT>/MoonPool/01_Documents/Approved_Batches/2026-06_Test
 ```
 
 No trailing slashes required but be consistent.

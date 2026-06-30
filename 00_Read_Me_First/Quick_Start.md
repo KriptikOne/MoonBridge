@@ -6,13 +6,9 @@ Get MoonBridge working in five calm steps. No scanning, no package managers, no 
 
 ## Step 1 — Understand the boundary
 
-MoonBridge lives at:
+MoonBridge lives at **`<MOONBRIDGE_ROOT>`** — the folder where you install or clone it. That may be a folder named MoonBridge in your home directory, but any location is fine.
 
-```
-~/MoonBridge
-```
-
-Your computer outside this folder is **off limits** to automated tools. Only `MoonPool` inside MoonBridge receives your files — and only when **you** put them there.
+Your computer outside `<MOONBRIDGE_ROOT>` is **off limits** to automated tools. Only `MoonPool` inside MoonBridge receives your files — and only when **you** put them there.
 
 ---
 
@@ -28,7 +24,7 @@ Your computer outside this folder is **off limits** to automated tools. Only `Mo
 
 ## Step 3 — Add your first files manually
 
-1. Open your file manager and go to `~/MoonBridge/MoonPool/00_Staging_Do_Not_Scan/`
+1. Open your file manager and go to `<MOONBRIDGE_ROOT>/MoonPool/00_Staging_Do_Not_Scan/`
 2. **Copy** (don't move) a small test folder of non-sensitive files into Staging
 3. Review the files — remove anything private, broken, or uncertain
 
@@ -68,7 +64,7 @@ Before any tool lists your files, add the **exact full path** to:
 Example (only after you create the folder):
 
 ```
-/Users/yourname/MoonBridge/MoonPool/01_Documents/Approved_Batches/2026-06_Test_Batch
+<MOONBRIDGE_ROOT>/MoonPool/01_Documents/Approved_Batches/2026-06_Test_Batch
 ```
 
 One path per line. No wildcards. No parent folders.
@@ -95,7 +91,7 @@ bash 05_Helper_Tools/inventory_ALLOWLIST_ONLY.sh "/full/path/to/exact/batch"
 
 ## What not to do yet
 
-- Do not scan Desktop, Documents, or Downloads
+- Do not scan common home-folder locations (`<HOME>/Desktop`, `<HOME>/Documents`, `<HOME>/Downloads`)
 - Do not run inventory without an allowlisted exact path
 - Do not run `npm install` or any code project without explicit approval
 - Do not chmod scripts blindly — read them first, run with `bash script.sh`
@@ -104,7 +100,7 @@ bash 05_Helper_Tools/inventory_ALLOWLIST_ONLY.sh "/full/path/to/exact/batch"
 
 ## When you move to a new machine
 
-Copy the entire `~/MoonBridge` folder to the new computer. See [Bridge_To_Future_Machine.md](Bridge_To_Future_Machine.md).
+Copy the entire `<MOONBRIDGE_ROOT>` folder to the new computer. See [Bridge_To_Future_Machine.md](Bridge_To_Future_Machine.md).
 
 ---
 

@@ -71,7 +71,7 @@ Any expansion beyond structure and documentation requires **explicit approval** 
 
 ### Migration steps (when ready)
 
-1. **Copy** the entire `~/MoonBridge` folder to the new machine (USB drive, local transfer, etc.)
+1. **Copy** the entire `<MOONBRIDGE_ROOT>` folder to the new machine (USB drive, local transfer, etc.)
 2. Verify `approved_scan_directories.txt` paths still match (update username or home directory if needed)
 3. Re-read [AGENTS.md](../AGENTS.md) and [Safety_Rules.md](../01_Rules_And_Safety/Safety_Rules.md)
 4. Expand tools only with explicit Approval Level 4+ approval per command
@@ -79,14 +79,14 @@ Any expansion beyond structure and documentation requires **explicit approval** 
 
 ### Path updates after migration
 
-If your username or home directory differs on the new machine, update allowlist entries:
+If `<MOONBRIDGE_ROOT>` changes on the new machine (different install path or username), update allowlist entries:
 
 ```
 # Before (old machine)
-/Users/yourname/MoonBridge/MoonPool/...
+<MOONBRIDGE_ROOT>/MoonPool/...
 
 # After (new machine)
-/Users/newname/MoonBridge/MoonPool/...
+<MOONBRIDGE_ROOT>/MoonPool/...
 ```
 
 ---

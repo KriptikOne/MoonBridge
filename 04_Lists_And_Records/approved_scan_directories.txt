@@ -14,7 +14,7 @@
 # - Only list exact child batch folders you have manually cleansed
 #
 # Example (commented out — not active):
-# /Users/yourname/MoonBridge/MoonPool/01_Documents/Approved_Batches/2026-06_Test_Batch
+# <MOONBRIDGE_ROOT>/MoonPool/01_Documents/Approved_Batches/2026-06_Test_Batch
 #
 # To approve a directory:
 # 1. Manually cleanse your files

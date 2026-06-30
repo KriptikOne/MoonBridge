@@ -19,7 +19,7 @@ Your computer (untouched by default)
    06_Finished_Outputs
 ```
 
-MoonBridge does **not** replace your Desktop, Documents, or Downloads. It gives you a **second, deliberate workspace** where organisation rules are clear and agents know their limits.
+MoonBridge does **not** replace common home-folder locations (`<HOME>/Desktop`, `<HOME>/Documents`, `<HOME>/Downloads`). It gives you a **second, deliberate workspace** where organisation rules are clear and agents know their limits.
 
 ---
 
@@ -31,7 +31,7 @@ Folders `00` through `07`, plus rules, indexes, templates, catalogs, and tools. 
 
 ### User-content zone (MoonPool only)
 
-`~/MoonBridge/MoonPool` is the **only** place where your real files should enter the system. You bring files here manually (copy, never auto-scan from elsewhere).
+`<MOONBRIDGE_ROOT>/MoonPool` is the **only** place where your real files should enter the system. You bring files here manually (copy, never auto-scan from elsewhere).
 
 ---
 

@@ -6,7 +6,7 @@ MoonBridge is a **local-first filesystem template**. It is designed so that **no
 
 ## What MoonBridge is not
 
-- Not an auto-scanner of your home folder, Desktop, Documents, or Downloads
+- Not an auto-scanner of your home folder or common home-folder locations (`<HOME>/Desktop`, `<HOME>/Documents`, `<HOME>/Downloads`)
 - Not a cloud sync or backup service
 - Not a credential store
 - Not a substitute for full-disk encryption, OS updates, or your own security practices
@@ -15,7 +15,7 @@ MoonBridge is a **local-first filesystem template**. It is designed so that **no
 
 ## Safe use of this template
 
-1. Copy MoonBridge to `~/MoonBridge` on your own machine
+1. Copy MoonBridge to `<MOONBRIDGE_ROOT>` on your own machine — the folder where you install or clone it (any location is fine)
 2. Place real files only in `MoonPool` after manual review
 3. Add exact paths to `approved_scan_directories.txt` before any metadata inventory
 4. Review helper scripts before running them with `bash script.sh`

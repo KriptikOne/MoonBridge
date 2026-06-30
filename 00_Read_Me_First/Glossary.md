@@ -70,16 +70,26 @@ Collecting **metadata only** about files in an allowlisted folder — not readin
 
 ---
 
+## H
+
+**`<HOME>`**  
+Documentation placeholder for the user's home directory (often `~` on Unix-like systems).
+
+---
+
 ## M
 
 **Metadata**  
 Facts about a file without opening it: path, name, extension, size, modified date, type guess, folder flag, simple risk flags.
 
+**`<MOONBRIDGE_ROOT>`**  
+Documentation placeholder for the MoonBridge root folder — where a user installs or clones the template (any location is fine).
+
 **MoonBridge**  
-The entire `~/MoonBridge` filesystem organisation system.
+The entire `<MOONBRIDGE_ROOT>` filesystem organisation system.
 
 **MoonPool**  
-The controlled user-content intake zone at `~/MoonBridge/MoonPool`. The only place your real files should enter the system.
+The controlled user-content intake zone at `<MOONBRIDGE_ROOT>/MoonPool`. The only place your real files should enter the system.
 
 ---
 

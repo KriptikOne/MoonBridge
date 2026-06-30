@@ -11,4 +11,4 @@ Run with: `bash script_name.sh`
 | [inventory_ALLOWLIST_ONLY.sh](inventory_ALLOWLIST_ONLY.sh) | Metadata inventory — allowlisted paths only |
 | [copy_import_COPY_ONLY.sh](copy_import_COPY_ONLY.sh) | Copy-only import — dry-run default |
 
-None of these scripts scan Desktop, Documents, Downloads, or your computer outside MoonBridge.
+None of these scripts scan common home-folder locations or your computer outside `<MOONBRIDGE_ROOT>`.

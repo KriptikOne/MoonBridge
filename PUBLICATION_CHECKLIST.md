@@ -26,7 +26,7 @@ Use this list **before** making the MoonBridge public repository visible. Comple
 ## 3. Paths and usernames
 
 - [ ] No real usernames or machine-specific paths in active paths
-- [ ] Allowlist examples use `/Users/yourname/...` placeholders only
+- [ ] Allowlist examples use `<MOONBRIDGE_ROOT>/...` placeholders only
 - [ ] No machine-specific home paths in CSV, JSON, or logs
 - [ ] No private machine hostnames or internal network paths
 
@@ -56,7 +56,7 @@ Run a keyword check for private or machine-specific terms. Confirm **zero matche
 
 - [ ] Private project codenames (search for known private names from your working copy)
 - [ ] Machine-specific details (hardware model names, OS version names, personal target hardware)
-- [ ] Real usernames or home paths (e.g. `/Users/yourname` used as an active path, not a placeholder)
+- [ ] Real usernames or home paths used as active allowlist entries (placeholders like `<MOONBRIDGE_ROOT>` and `<HOME>` are fine in docs)
 - [ ] Personal sovereign stack, private agent system, crypto-specific project names
 
 ---

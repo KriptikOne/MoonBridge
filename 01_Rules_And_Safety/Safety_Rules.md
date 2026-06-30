@@ -15,7 +15,7 @@ These rules protect your computer, your privacy, and your files. They apply to *
 | Never | Details |
 |-------|---------|
 | Scan home folder | No `~`, `$HOME`, or broad traversal |
-| Scan Desktop / Documents / Downloads | Common personal folders are off limits |
+| Scan common home-folder locations | `<HOME>/Desktop`, `<HOME>/Documents`, `<HOME>/Downloads`, and similar paths are off limits |
 | Scan mounted drives or external drives | **Default: refused** — unless you explicitly approve a specific path outside MoonBridge |
 | Scan system folders | OS system directories (e.g. `/System`, `/Library` on some platforms) |
 | Scan hidden folders | Names starting with `.` (except documented MoonBridge internals) |
@@ -100,7 +100,7 @@ See [Code_Project_Safety.md](Code_Project_Safety.md).
 
 ## When agents must stop and ask
 
-- Path outside `~/MoonBridge`
+- Path outside `<MOONBRIDGE_ROOT>`
 - Path not on allowlist
 - MoonPool root or Approved_Batches root (not exact child)
 - Task requires reading file contents

@@ -8,7 +8,7 @@ Thank you for helping improve MoonBridge — a **local-first, human-first file o
 
 MoonBridge provides:
 
-- A safe folder structure (`~/MoonBridge`)
+- A safe folder structure (`<MOONBRIDGE_ROOT>`)
 - A controlled intake zone (`MoonPool`)
 - Rules for humans and AI assistants
 - Blank catalogs, templates, and portable helper scripts
@@ -33,7 +33,7 @@ All contributions must respect MoonBridge's core model:
 
 | Principle | Meaning |
 |-----------|---------|
-| No whole-computer scanning | Tools stay inside `~/MoonBridge` |
+| No whole-computer scanning | Tools stay inside `<MOONBRIDGE_ROOT>` |
 | MoonPool intake only | User files enter only via manual copy |
 | Allowlist-only scanning | Metadata inventory on exact listed paths only |
 | Metadata only | No reading file contents during inventory |
@@ -50,7 +50,7 @@ Do **not** propose features that weaken these defaults.
 - **Secrets** — passwords, API keys, private keys, recovery phrases, wallet seeds, `.env` files
 - **Real MoonPool contents** — use fictional examples only
 - **Private project names** — keep wording generic and template-friendly
-- **Machine-specific paths** — use placeholders like `/Users/yourname/MoonBridge/...`
+- **Machine-specific paths** — use placeholders like `<MOONBRIDGE_ROOT>/MoonPool/...`
 
 If you need an example, invent a neutral batch name such as `2026-06_Test_Batch`.
 

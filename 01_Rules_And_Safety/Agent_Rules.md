@@ -12,7 +12,7 @@ Before any task, read [AGENTS.md](../AGENTS.md) — the sixteen laws are binding
 
 ## Scope
 
-Agents may work inside `~/MoonBridge` only. Default approval level is **0** unless the human states otherwise for a specific task.
+Agents may work inside `<MOONBRIDGE_ROOT>` only. Default approval level is **0** unless the human states otherwise for a specific task.
 
 ---
 
@@ -20,7 +20,7 @@ Agents may work inside `~/MoonBridge` only. Default approval level is **0** unle
 
 Before starting, confirm:
 
-- [ ] Task path is inside `~/MoonBridge`
+- [ ] Task path is inside `<MOONBRIDGE_ROOT>`
 - [ ] Approval level is sufficient for the task
 - [ ] No whole-computer scanning required
 - [ ] No network access required
@@ -71,8 +71,8 @@ If any box fails → **stop and ask**.
 For any path `P`:
 
 1. Reject if `P` contains `..` as a traversal intent
-2. Reject if `P` is `~`, `/`, a mounted drive root (e.g. `/Volumes`, `/media`, `/mnt`), or standard home subfolders (Desktop, Documents, Downloads)
-3. Reject if `P` is not under `~/MoonBridge`
+2. Reject if `P` is `~`, `/`, a mounted drive root (e.g. `/Volumes`, `/media`, `/mnt`), or common home-folder locations (`<HOME>/Desktop`, `<HOME>/Documents`, `<HOME>/Downloads`)
+3. Reject if `P` is not under `<MOONBRIDGE_ROOT>`
 4. Reject if `P` is MoonBridge root, MoonPool root, or Approved_Batches root
 5. Reject if `P` is in a do-not-scan zone
 6. For inventory: require exact match in `approved_scan_directories.txt`
