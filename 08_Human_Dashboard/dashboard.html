@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoonBridge Human Dashboard</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a2332;
+      --surface2: #243044;
+      --text: #e8edf4;
+      --muted: #9aa8bc;
+      --accent: #6eb5ff;
+      --accent2: #7ee8b0;
+      --warn-bg: #3d2a14;
+      --warn-border: #c9a227;
+      --warn-text: #f5e6b8;
+      --border: #2d3a4f;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      padding: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    header { text-align: center; margin-bottom: 2rem; }
+    h1 { font-size: 1.85rem; font-weight: 700; letter-spacing: -0.02em; }
+    .tagline { color: var(--muted); margin-top: 0.5rem; font-size: 1.05rem; }
+    .warning {
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-border);
+      color: var(--warn-text);
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+    .warning strong { display: block; margin-bottom: 0.35rem; }
+    .flow {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .flow h2 { font-size: 1.1rem; color: var(--accent); margin-bottom: 1rem; }
+    .flow-steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem 0.25rem;
+      font-size: 0.9rem;
+    }
+    .flow-step {
+      background: var(--surface2);
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+    .flow-arrow { color: var(--accent2); font-weight: bold; padding: 0 0.15rem; }
+    .flow-note { margin-top: 1rem; font-size: 0.85rem; color: var(--muted); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.15rem 1.25rem;
+      transition: border-color 0.15s;
+    }
+    .card:hover { border-color: var(--accent); }
+    .card h3 { font-size: 1rem; color: var(--accent); margin-bottom: 0.4rem; }
+    .card p { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.75rem; }
+    .card a {
+      color: var(--accent2);
+      text-decoration: none;
+      font-size: 0.88rem;
+      display: inline-block;
+      margin-right: 0.75rem;
+      margin-top: 0.25rem;
+    }
+    .card a:hover { text-decoration: underline; }
+    .card .path { font-family: ui-monospace, monospace; font-size: 0.78rem; color: var(--muted); }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.82rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MoonBridge Human Dashboard</h1>
+    <p class="tagline">Local-first file organisation — human overview, not automation</p>
+  </header>
+
+  <div class="warning" role="alert">
+    <strong>Static dashboard — no scanning, reading, uploading, or automation</strong>
+    This page is plain HTML. It does not scan your computer, read files, connect to the network, store cookies, or run scripts. Open local documentation links manually. All real work happens through human-approved actions inside <code>&lt;MOONBRIDGE_ROOT&gt;</code>.
+  </div>
+
+  <section class="flow" aria-labelledby="flow-heading">
+    <h2 id="flow-heading">The MoonBridge flow</h2>
+    <div class="flow-steps">
+      <span class="flow-step">messy files</span>
+      <span class="flow-arrow" aria-hidden="true">→</span>
+      <span class="flow-step">safe staging</span>
+      <span class="flow-arrow" aria-hidden="true">→</span>
+      <span class="flow-step">structured context</span>
+      <span class="flow-arrow" aria-hidden="true">→</span>
+      <span class="flow-step">agent-readable projects</span>
+      <span class="flow-arrow" aria-hidden="true">→</span>
+      <span class="flow-step">future approved automation</span>
+    </div>
+    <p class="flow-note">Advanced automation comes later — only with explicit human approval per action.</p>
+  </section>
+
+  <div class="grid">
+    <article class="card">
+      <h3>Read Me First</h3>
+      <p>Onboarding, quick start, glossary, and bridge notes.</p>
+      <span class="path">00_Read_Me_First/</span>
+      <br>
+      <a href="../00_Read_Me_First/Quick_Start.md">Quick Start</a>
+      <a href="../00_Read_Me_First/How_This_System_Works.md">How It Works</a>
+      <a href="../00_Read_Me_First/Glossary.md">Glossary</a>
+    </article>
+
+    <article class="card">
+      <h3>Rules &amp; Safety</h3>
+      <p>Policies, scan rules, agent laws, and decision log.</p>
+      <span class="path">01_Rules_And_Safety/</span>
+      <br>
+      <a href="../01_Rules_And_Safety/Safety_Rules.md">Safety Rules</a>
+      <a href="../01_Rules_And_Safety/Scan_Policy.md">Scan Policy</a>
+      <a href="../AGENTS.md">AGENTS.md</a>
+    </article>
+
+    <article class="card">
+      <h3>Indexes</h3>
+      <p>Human-readable navigation for projects, assets, and topics.</p>
+      <span class="path">02_Indexes/</span>
+      <br>
+      <a href="../02_Indexes/Main_Index.md">Main Index</a>
+      <a href="../02_Indexes/Project_Index.md">Project Index</a>
+    </article>
+
+    <article class="card">
+      <h3>Templates</h3>
+      <p>Starter documents for projects, notes, research, and code.</p>
+      <span class="path">03_Templates/</span>
+      <br>
+      <a href="../03_Templates/Project_Template.md">Project Template</a>
+      <a href="../03_Templates/Notes_Template.md">Notes Template</a>
+    </article>
+
+    <article class="card">
+      <h3>Lists &amp; Records</h3>
+      <p>CSV catalogs, logs, and the scan allowlist gate.</p>
+      <span class="path">04_Lists_And_Records/</span>
+      <br>
+      <a href="../04_Lists_And_Records/approved_scan_directories.txt">Allowlist</a>
+      <a href="../04_Lists_And_Records/README.md">Records README</a>
+    </article>
+
+    <article class="card">
+      <h3>Helper Tools</h3>
+      <p>Review-first shell scripts. Dry-run by default.</p>
+      <span class="path">05_Helper_Tools/</span>
+      <br>
+      <a href="../05_Helper_Tools/README.md">Tools README</a>
+    </article>
+
+    <article class="card">
+      <h3>Finished Outputs</h3>
+      <p>Polished deliverables — not works-in-progress.</p>
+      <span class="path">06_Finished_Outputs/</span>
+      <br>
+      <a href="../06_Finished_Outputs/README.md">Outputs README</a>
+    </article>
+
+    <article class="card">
+      <h3>Backups</h3>
+      <p>Snapshot destination for records and key docs.</p>
+      <span class="path">07_Backups/</span>
+      <br>
+      <a href="../07_Backups/README.md">Backups README</a>
+    </article>
+
+    <article class="card">
+      <h3>MoonPool</h3>
+      <p>Controlled intake — copy in manually, never whole-computer scan.</p>
+      <span class="path">MoonPool/</span>
+      <br>
+      <a href="../MoonPool/README.md">MoonPool README</a>
+      <a href="../MoonPool/00_Staging_Do_Not_Scan/README.md">Staging</a>
+    </article>
+
+    <article class="card">
+      <h3>Private Do Not Scan</h3>
+      <p>Sensitive material — never allowlist or auto-scan.</p>
+      <span class="path">Private_Do_Not_Scan/</span>
+      <br>
+      <a href="../Private_Do_Not_Scan/README.md">Private README</a>
+    </article>
+
+    <article class="card">
+      <h3>Human Dashboard</h3>
+      <p>You are here. Static overview layer.</p>
+      <span class="path">08_Human_Dashboard/</span>
+      <br>
+      <a href="Dashboard_Guide.md">Dashboard Guide</a>
+      <a href="dashboard_data_example.json">Example data (sample only)</a>
+    </article>
+
+    <article class="card">
+      <h3>Agent Prompts</h3>
+      <p>Safe prompt templates for AI assistants.</p>
+      <span class="path">09_Agent_Prompts/</span>
+      <br>
+      <a href="../09_Agent_Prompts/Agent_Operating_Prompt.md">Operating Prompt</a>
+      <a href="../09_Agent_Prompts/README.md">Prompts README</a>
+    </article>
+
+    <article class="card">
+      <h3>Automation Plans</h3>
+      <p>Future automation ideas — planning only, not implemented.</p>
+      <span class="path">10_Automation_Plans/</span>
+      <br>
+      <a href="../10_Automation_Plans/Human_First_Workflow.md">Human-First Workflow</a>
+      <a href="../10_Automation_Plans/README.md">Plans README</a>
+    </article>
+  </div>
+
+  <footer>
+    <p>MoonBridge — organise locally, safely, on your terms.</p>
+    <p><a href="../README.md">Main README</a> · <a href="../LICENSE">LICENSE</a> · <a href="../SECURITY.md">SECURITY</a></p>
+    <p>Placeholder: <code>&lt;MOONBRIDGE_ROOT&gt;</code> = your MoonBridge install folder</p>
+  </footer>
+</body>
+</html>

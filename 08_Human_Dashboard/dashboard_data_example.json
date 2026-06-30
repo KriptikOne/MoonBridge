@@ -1,0 +1,52 @@
+{
+  "_notice": "SAMPLE DATA ONLY — not live system state. Do not treat as real paths or approvals.",
+  "moonbridge_root": "<MOONBRIDGE_ROOT>",
+  "generated_by": "manual_example",
+  "version": "0.2.0-usability-example",
+  "folder_status": {
+    "00_Read_Me_First": { "status": "ready", "notes": "Onboarding docs present" },
+    "01_Rules_And_Safety": { "status": "ready", "notes": "Safety policies in place" },
+    "02_Indexes": { "status": "empty_template", "notes": "Awaiting human entries" },
+    "03_Templates": { "status": "ready", "notes": "Starter templates available" },
+    "04_Lists_And_Records": { "status": "empty_template", "notes": "Catalogs blank; allowlist empty" },
+    "05_Helper_Tools": { "status": "review_first", "notes": "Scripts not auto-executed" },
+    "06_Finished_Outputs": { "status": "empty", "notes": "No deliverables yet" },
+    "07_Backups": { "status": "empty", "notes": "No snapshots yet" },
+    "08_Human_Dashboard": { "status": "ready", "notes": "Static overview layer" },
+    "09_Agent_Prompts": { "status": "ready", "notes": "Prompt templates available" },
+    "10_Automation_Plans": { "status": "ready", "notes": "Planning docs only — no automation running" },
+    "MoonPool": { "status": "empty_template", "notes": "No user batches yet" },
+    "Private_Do_Not_Scan": { "status": "placeholder", "notes": "Never allowlist" }
+  },
+  "approval_levels_summary": [
+    { "level": 0, "label": "Structure", "allowed": "Folders, markdown, blank catalogs" },
+    { "level": 1, "label": "Metadata inventory", "allowed": "Allowlisted paths only" },
+    { "level": 2, "label": "Read contents", "allowed": "Non-sensitive files on allowlist" },
+    { "level": 3, "label": "Copy import", "allowed": "Copy-first, dry-run default" },
+    { "level": 4, "label": "Code execution", "allowed": "Per-command approval only" },
+    { "level": 5, "label": "Destructive", "allowed": "Per-action approval only" }
+  ],
+  "safety_checks": {
+    "whole_computer_scanning": "refused",
+    "moonpool_root_scanning": "refused",
+    "allowlist_empty": true,
+    "do_not_scan_zones_respected": true,
+    "network_access_default": "refused",
+    "code_execution_default": "refused",
+    "destructive_actions_default": "refused"
+  },
+  "example_next_steps": [
+    "Read 00_Read_Me_First/Quick_Start.md",
+    "Copy a small test batch into MoonPool/00_Staging_Do_Not_Scan/",
+    "Manually cleanse and move to Approved_Batches/2026-06_Test_Batch/",
+    "Add exact path to approved_scan_directories.txt",
+    "Request Level 1 metadata inventory with human approval",
+    "Review file_catalog.csv before any further action"
+  ],
+  "example_batch": {
+    "name": "2026-06_Test_Batch",
+    "path": "<MOONBRIDGE_ROOT>/MoonPool/01_Documents/Approved_Batches/2026-06_Test_Batch",
+    "allowlisted": false,
+    "note": "Fictional example — not active until human adds to allowlist"
+  }
+}

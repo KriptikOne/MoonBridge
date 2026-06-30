@@ -104,4 +104,16 @@ Copy the entire `<MOONBRIDGE_ROOT>` folder to the new computer. See [Bridge_To_F
 
 ---
 
+## Next steps — usability layer
+
+After the five steps above:
+
+1. Open the static overview: [08_Human_Dashboard/dashboard.html](../08_Human_Dashboard/dashboard.html) (offline, no scanning)
+2. If you use AI assistants, browse [09_Agent_Prompts/](../09_Agent_Prompts/) for safe prompt templates
+3. Follow the human-first sequence in [10_Automation_Plans/Human_First_Workflow.md](../10_Automation_Plans/Human_First_Workflow.md) before considering any automation
+
+Automation is **not** ready by default. These resources help you prepare structured context for future local agents — after your approval.
+
+---
+
 *You're ready. Start small, stay safe, expand when it feels right.*

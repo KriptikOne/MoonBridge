@@ -16,6 +16,9 @@ Your human-readable map of MoonBridge. Update this by hand as you organise — o
 | Helper Tools | `05_Helper_Tools/` | Shell scripts (review first) |
 | Finished Outputs | `06_Finished_Outputs/` | Polished deliverables |
 | Backups | `07_Backups/` | Snapshots |
+| Human Dashboard | `08_Human_Dashboard/` | Static offline overview |
+| Agent Prompts | `09_Agent_Prompts/` | Safe AI prompt templates |
+| Automation Plans | `10_Automation_Plans/` | Future automation docs (not implemented) |
 | MoonPool | `MoonPool/` | User file intake |
 | Private | `Private_Do_Not_Scan/` | Sensitive — never scan |
 
@@ -71,6 +74,10 @@ Your human-readable map of MoonBridge. Update this by hand as you organise — o
 - [Topic Index](Topic_Index.md)
 - [Main README](../README.md)
 - [How This System Works](../00_Read_Me_First/How_This_System_Works.md)
+- [Human Dashboard](../08_Human_Dashboard/dashboard.html)
+- [Agent Prompts](../09_Agent_Prompts/README.md)
+- [Automation Plans](../10_Automation_Plans/README.md)
+- [Human-First Workflow](../10_Automation_Plans/Human_First_Workflow.md)
 
 ---
 
@@ -86,4 +93,4 @@ Update indexes when catalogs change, or keep indexes as the human-friendly summa
 
 ---
 
-*Last updated: 2026-06-30 (bootstrap)*
+*Last updated: 2026-06-30 (v0.2 usability layer)*

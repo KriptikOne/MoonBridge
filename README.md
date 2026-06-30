@@ -100,16 +100,33 @@ Internal template paths such as `MoonPool/`, `MoonPool/03_Projects/`, `Approved_
 
 ---
 
+## Human usability and future automation
+
+MoonBridge now includes a **usability and preparation layer** — for humans first, agents later:
+
+| Folder | Purpose |
+|--------|---------|
+| [08_Human_Dashboard/](08_Human_Dashboard/) | Static offline overview — open `dashboard.html` in your browser |
+| [09_Agent_Prompts/](09_Agent_Prompts/) | Reusable prompt templates with approval gates |
+| [10_Automation_Plans/](10_Automation_Plans/) | Future automation ideas — planning docs only |
+
+**Nothing in these folders runs automation by default.** The dashboard does not scan, read, or upload. Prompt templates reinforce safety rules. Automation plans describe what might be possible later — after you organise data and approve each step.
+
+MoonBridge prepares structured context so future local agents can work safely **later**, after human approval.
+
+---
+
 ## Start here
 
 | Step | Document |
 |------|----------|
 | 1 | [How This System Works](00_Read_Me_First/How_This_System_Works.md) |
 | 2 | [Quick Start](00_Read_Me_First/Quick_Start.md) |
-| 3 | [Safety Rules](01_Rules_And_Safety/Safety_Rules.md) |
-| 4 | [Glossary](00_Read_Me_First/Glossary.md) |
+| 3 | [Human Dashboard](08_Human_Dashboard/dashboard.html) |
+| 4 | [Safety Rules](01_Rules_And_Safety/Safety_Rules.md) |
+| 5 | [Glossary](00_Read_Me_First/Glossary.md) |
 
-If you work with AI assistants, read [AGENTS.md](AGENTS.md) before any automated task.
+If you work with AI assistants, read [AGENTS.md](AGENTS.md) and [09_Agent_Prompts/](09_Agent_Prompts/) before any automated task.
 
 ---
 
@@ -125,6 +142,9 @@ If you work with AI assistants, read [AGENTS.md](AGENTS.md) before any automated
 ├── 05_Helper_Tools/       ← safe shell scripts (review before running)
 ├── 06_Finished_Outputs/   ← polished deliverables
 ├── 07_Backups/            ← backup snapshots
+├── 08_Human_Dashboard/    ← static offline overview
+├── 09_Agent_Prompts/      ← safe prompt templates
+├── 10_Automation_Plans/   ← future automation planning (not implemented)
 ├── MoonPool/              ← controlled file intake zone
 ├── Private_Do_Not_Scan/   ← sensitive material — never auto-scan
 ├── AGENTS.md              ← laws for AI assistants

@@ -4,7 +4,7 @@ A simple plan for the public template. Dates are tentative; scope may shift base
 
 ---
 
-## v0.1 — Empty public template *(current)*
+## v0.1 — Empty public template *(complete)*
 
 - Complete folder structure and MoonPool categories
 - Safety rules, agent laws, and onboarding docs
@@ -16,15 +16,17 @@ A simple plan for the public template. Dates are tentative; scope may shift base
 
 ---
 
-## v0.2 — Clearer docs and examples
+## v0.2 — Human usability + agent preparation layer *(current)*
 
-- Improved Quick Start and glossary
-- More fictional batch-name examples in docs
-- Cross-platform wording (whole-computer scanning, platform-neutral)
-- Optional "first week" workflow guide
-- Maintainer publication checklist refinements
+- Static human dashboard (`08_Human_Dashboard/dashboard.html`) — offline, no automation
+- Agent prompt templates (`09_Agent_Prompts/`) — approval-gated workflows
+- Automation planning docs (`10_Automation_Plans/`) — ideas only, not implemented
+- Human-first workflow and approval level map
+- Cross-platform path placeholders (`<MOONBRIDGE_ROOT>`, `<HOME>`)
 
-**Goal:** New users understand boundaries and safety rules within one reading session.
+**Goal:** First-time users can orient quickly; future agents inherit clear boundaries — but **no working automation ships in this release**.
+
+**Not included in v0.2:** live scanning, auto-indexing, running agents, or background automation.
 
 ---
 

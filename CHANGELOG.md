@@ -38,6 +38,25 @@ Format based on [Keep a Changelog](https://keepachangelog.com/). This project us
 
 ---
 
+## [0.2.0-usability] — 2026-06-30
+
+### Added
+
+- `08_Human_Dashboard/` — static offline `dashboard.html`, example JSON, dashboard guide
+- `09_Agent_Prompts/` — operating prompt, approval/scan/import/code/review templates, sanitisation check
+- `10_Automation_Plans/` — automation candidates, safe rules, future agent notes, approval map, human-first workflow
+- README section: human usability and future automation
+- Quick Start next steps pointing to dashboard, prompts, and human-first workflow
+- Main Index entries for new folders
+
+### Notes
+
+- Dashboard is static HTML only — no scanning, network, scripts, or automation
+- Automation plans are documentation only — no scripts or running agents added
+- Safety model unchanged: whole-computer scanning refused, MoonPool intake, allowlist-only, approval gates
+
+---
+
 ## [Unreleased]
 
 ### Planned
@@ -45,3 +64,4 @@ Format based on [Keep a Changelog](https://keepachangelog.com/). This project us
 - Add first allowlisted scan directory after manual cleansing
 - Run first Level 1 metadata-only inventory on approved path only
 - First copy-only import with dry-run approval
+- v0.3 sample project packs (fictional data only)

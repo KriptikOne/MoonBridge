@@ -2,33 +2,37 @@
 
 ## Current version
 
-**0.1.0-bootstrap** — Initial filesystem bootstrap (Level 0)
+**0.2.0-usability** — Human usability and agent preparation layer (Level 0)
 
 ## Release date
 
 2026-06-30
 
-## Bootstrap environment
+## Environment
 
 - Platform: any local machine (no specific model or OS required)
 - Designed for portability across machines and operating systems
 
 ## What this version includes
 
-- Complete top-level folder structure
-- MoonPool intake area with standard substructure
-- Safety rules, agent laws, and onboarding documents
-- Blank catalogs (CSV), logs, and classification rules (JSON)
-- Safe placeholder shell scripts (not executable by default)
+- Everything from **0.1.0-bootstrap** (folder structure, MoonPool, safety rules, catalogs, helper scripts)
+- **08_Human_Dashboard/** — static offline `dashboard.html` and sample data (overview only)
+- **09_Agent_Prompts/** — reusable prompt templates with approval gates
+- **10_Automation_Plans/** — future automation planning docs (ideas only)
+- Public usability improvements: cross-platform path placeholders, human-first workflow, approval level map
+- Blank catalogs (CSV), logs, and classification rules (JSON) — unchanged from bootstrap
+- Safe placeholder shell scripts (review-first, not auto-executed)
 - Empty allowlist for future approved scan directories
 
 ## What this version does not include
 
+- No working automation
+- No autonomous agents
+- No automatic scanning, importing, or code execution
 - No git repository
 - No package managers or Node projects
-- No automated scanning or indexing runs
 - No cloud sync
-- No single-project folders are baked into the base structure
+- No live dashboard data — `dashboard.html` does not read files or connect to the network
 
 ## Versioning scheme
 
@@ -38,8 +42,8 @@
 
 ## Next planned milestones
 
-1. **0.2.0** — First manually cleansed batch placed in MoonPool; allowlist entries added
-2. **0.3.0** — First metadata-only inventory run (Level 1, approved paths only)
-3. **1.0.0** — Copy-import workflow validated; catalogs populated
+1. **0.3.0** — Optional sample project packs (fictional data only)
+2. **0.4.0** — Stronger validation scripts (dry-run, allowlist checks)
+3. **1.0.0** — Copy-import workflow validated; catalogs populated with human-approved data
 
 See [CHANGELOG.md](CHANGELOG.md) for detailed history.
