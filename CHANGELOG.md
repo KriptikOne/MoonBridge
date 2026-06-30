@@ -59,6 +59,15 @@ Format based on [Keep a Changelog](https://keepachangelog.com/). This project us
 
 ## [Unreleased]
 
+### Added
+
+- `08_Human_Dashboard/moonpool_auditor.html` — initial MoonPool Auditor Action Planner (sample data only; generates Markdown/JSON action plans; no file operations)
+
+### Notes
+
+- Auditor prepares approval records — does not move, copy, scan, edit allowlists, or execute commands
+- Drag-and-drop is visual planning only; no FileReader or filesystem APIs
+
 ### Planned
 
 - Add first allowlisted scan directory after manual cleansing

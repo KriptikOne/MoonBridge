@@ -106,11 +106,11 @@ MoonBridge now includes a **usability and preparation layer** — for humans fir
 
 | Folder | Purpose |
 |--------|---------|
-| [08_Human_Dashboard/](08_Human_Dashboard/) | Static offline overview — open `dashboard.html` in your browser |
+| [08_Human_Dashboard/](08_Human_Dashboard/) | Static offline overview (`dashboard.html`) and **MoonPool Auditor Action Planner** (`moonpool_auditor.html`) |
 | [09_Agent_Prompts/](09_Agent_Prompts/) | Reusable prompt templates with approval gates |
 | [10_Automation_Plans/](10_Automation_Plans/) | Future automation ideas — planning docs only |
 
-**Nothing in these folders runs automation by default.** The dashboard does not scan, read, or upload. Prompt templates reinforce safety rules. Automation plans describe what might be possible later — after you organise data and approve each step.
+**Nothing in these folders runs automation by default.** The dashboard does not scan, read, or upload. The **MoonPool Auditor** prepares review notes, allowlist requests, and copy-only import plans as structured action records — it does **not** execute them. Prompt templates reinforce safety rules. Automation plans describe what might be possible later — after you organise data and approve each step.
 
 MoonBridge prepares structured context so future local agents can work safely **later**, after human approval.
 

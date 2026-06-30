@@ -8,6 +8,7 @@ How to use the MoonBridge human dashboard without weakening safety rules.
 
 `dashboard.html` is a **static local HTML file**. It gives you:
 
+- The MoonBridge logo and branded overview (loads `../assets/brand/moonbridge-logo.png` locally only)
 - A visual summary of the MoonBridge flow
 - Quick links to documentation folders
 - A reminder of safety boundaries
@@ -21,6 +22,41 @@ How to use the MoonBridge human dashboard without weakening safety rules.
 - Not a server or web application
 
 The dashboard never reads `dashboard_data_example.json` automatically. That JSON file is **sample data only** for humans who want to sketch a future dashboard layout manually.
+
+---
+
+## MoonPool Auditor Action Planner
+
+`moonpool_auditor.html` is the **initial MoonPool Auditor** — an Action Planner for human review.
+
+### What it does
+
+- Shows sample MoonPool zones and mock items (no real scanning)
+- Lets you select items and inspect mock metadata
+- Generates structured **action plans** (Markdown and JSON) for:
+  - Approval notes
+  - Quarantine notes
+  - Allowlist requests
+  - Copy-only import plans
+  - Review summaries
+
+### What it does not do
+
+- Move, copy, delete, or rename files
+- Read dropped file contents or real paths
+- Edit `approved_scan_directories.txt`
+- Execute commands or grant approval by itself
+
+### Action-planning flow
+
+1. Open `moonpool_auditor.html` locally
+2. Select a sample zone and item in the browser pane
+3. Review mock details in the Inspector
+4. Choose **Prepare…** to generate an action plan
+5. Copy Markdown or JSON for human review
+6. Paste into a Grok session, agent prompt, or manual workflow — execution requires separate human approval
+
+Drag-and-drop is **visual planning only** — dropped files are counted but not read or stored.
 
 ---
 

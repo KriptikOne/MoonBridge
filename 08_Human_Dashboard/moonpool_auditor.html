@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoonPool Auditor — Action Planner</title>
+  <style>
+    :root {
+      --bg: #050505;
+      --panel: #0b0b0b;
+      --toolbar: #111111;
+      --sidebar: #0d0d0d;
+      --surface: #151515;
+      --elevated: #1c1c1c;
+      --selected: rgba(255, 204, 0, 0.12);
+      --hover: rgba(255, 204, 0, 0.06);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 204, 0, 0.25);
+      --text: #f5f5f0;
+      --muted: #a8a29a;
+      --dim: #6f6a60;
+      --gold: #ffcc00;
+      --amber: #ff9900;
+      --danger: #ff6b6b;
+      --safe: #8ee59a;
+      --warning: #ffd166;
+      --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --mono: ui-monospace, "Cascadia Code", "Source Code Pro", monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .app {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      height: 100vh;
+      min-height: 0;
+    }
+    .titlebar {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5rem 0.85rem;
+      background: var(--toolbar);
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      background-image: radial-gradient(ellipse 60% 80% at 10% 0%, rgba(255, 204, 0, 0.06), transparent 70%);
+    }
+    .brand-logo {
+      width: 28px;
+      height: auto;
+      filter: drop-shadow(0 0 6px rgba(255, 204, 0, 0.3));
+    }
+    .titleblock { flex: 1; min-width: 180px; }
+    .titleblock h1 { font-size: 0.95rem; font-weight: 600; letter-spacing: 0.02em; }
+    .titleblock .sub { font-size: 0.72rem; color: var(--dim); margin-top: 1px; }
+    .pills { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+    .pill {
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 0.2rem 0.45rem;
+      border-radius: 3px;
+      border: 1px solid var(--border-strong);
+      color: var(--gold);
+      background: rgba(255, 204, 0, 0.06);
+    }
+    .view-switch {
+      display: flex;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .view-switch button {
+      font-family: var(--font);
+      font-size: 0.72rem;
+      padding: 0.35rem 0.65rem;
+      border: none;
+      background: var(--surface);
+      color: var(--muted);
+      cursor: pointer;
+    }
+    .view-switch button:hover { background: var(--hover); color: var(--text); }
+    .view-switch button.active {
+      background: var(--selected);
+      color: var(--gold);
+      box-shadow: inset 0 0 0 1px var(--border-strong);
+    }
+    .view-switch button:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
+    .workspace {
+      display: grid;
+      grid-template-columns: 200px 1fr 260px;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .sidebar {
+      background: var(--sidebar);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      padding: 0.5rem 0;
+    }
+    .nav-label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--dim);
+      padding: 0.5rem 0.65rem 0.25rem;
+    }
+    .nav-row {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.65rem;
+      cursor: pointer;
+      border-left: 2px solid transparent;
+      font-size: 0.78rem;
+    }
+    .nav-row:hover { background: var(--hover); }
+    .nav-row.selected {
+      background: var(--selected);
+      border-left-color: var(--gold);
+      color: var(--text);
+    }
+    .nav-marker {
+      width: 10px;
+      height: 10px;
+      border: 1px solid var(--border-strong);
+      border-radius: 2px;
+      flex-shrink: 0;
+      background: var(--elevated);
+    }
+    .nav-row.selected .nav-marker { background: rgba(255, 204, 0, 0.2); border-color: var(--gold); }
+    .nav-badge {
+      margin-left: auto;
+      font-size: 0.6rem;
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      background: var(--elevated);
+      color: var(--dim);
+      border: 1px solid var(--border);
+    }
+    .main-col {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      background: var(--panel);
+    }
+    .dropzone {
+      margin: 0.5rem 0.65rem 0;
+      padding: 0.45rem 0.65rem;
+      border: 1px dashed var(--border-strong);
+      border-radius: 4px;
+      font-size: 0.72rem;
+      color: var(--dim);
+      text-align: center;
+      background: rgba(255, 204, 0, 0.02);
+    }
+    .dropzone.drag-over { background: var(--hover); border-color: var(--gold); color: var(--muted); }
+    .drop-notice {
+      display: none;
+      margin: 0.35rem 0.65rem 0;
+      padding: 0.4rem 0.6rem;
+      font-size: 0.72rem;
+      background: rgba(255, 209, 102, 0.1);
+      border: 1px solid rgba(255, 209, 102, 0.35);
+      color: var(--warning);
+      border-radius: 4px;
+    }
+    .drop-notice.visible { display: block; }
+    .browser {
+      flex: 1;
+      overflow: auto;
+      margin: 0.5rem 0.65rem 0.65rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--surface);
+      min-height: 120px;
+    }
+    .empty-state {
+      padding: 2rem 1rem;
+      text-align: center;
+      color: var(--dim);
+      font-size: 0.82rem;
+    }
+    .empty-state p { margin: 0.25rem 0; }
+    .col-browser { display: flex; height: 100%; min-height: 200px; }
+    .col-pane {
+      flex: 1;
+      min-width: 140px;
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+    }
+    .col-pane:last-child { border-right: none; }
+    .col-pane.active { background: rgba(255, 204, 0, 0.04); }
+    .col-header {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--dim);
+      padding: 0.35rem 0.5rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--elevated);
+      position: sticky;
+      top: 0;
+    }
+    .item-row {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem 0.5rem;
+      cursor: pointer;
+      font-size: 0.78rem;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+    .item-row:hover { background: var(--hover); }
+    .item-row.selected { background: var(--selected); }
+    .item-icon {
+      width: 14px;
+      height: 14px;
+      border-radius: 2px;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+    }
+    .item-icon.folder { background: rgba(255, 204, 0, 0.15); border-color: var(--border-strong); }
+    .item-icon.file { background: var(--elevated); }
+    .chevron { color: var(--dim); font-size: 0.65rem; width: 10px; }
+    .list-table { width: 100%; border-collapse: collapse; font-size: 0.76rem; }
+    .list-table th {
+      text-align: left;
+      padding: 0.4rem 0.5rem;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--dim);
+      background: var(--elevated);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+    }
+    .list-table td { padding: 0.35rem 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .list-table tr { cursor: pointer; }
+    .list-table tr:hover td { background: var(--hover); }
+    .list-table tr.selected td { background: var(--selected); }
+    .grid-wrap {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 0.5rem;
+      padding: 0.65rem;
+    }
+    .grid-tile {
+      padding: 0.55rem 0.4rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      text-align: center;
+      cursor: pointer;
+      background: var(--elevated);
+      font-size: 0.68rem;
+    }
+    .grid-tile:hover { border-color: var(--border-strong); background: var(--hover); }
+    .grid-tile.selected { border-color: var(--gold); background: var(--selected); }
+    .grid-tile .gicon {
+      width: 32px;
+      height: 32px;
+      margin: 0 auto 0.35rem;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      background: var(--surface);
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.62rem;
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+    }
+    .badge-low { color: var(--safe); border-color: rgba(142, 229, 154, 0.35); }
+    .badge-med { color: var(--warning); border-color: rgba(255, 209, 102, 0.35); }
+    .badge-high { color: var(--danger); border-color: rgba(255, 107, 107, 0.35); }
+    .badge-neutral { color: var(--muted); }
+    .inspector {
+      background: var(--sidebar);
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .inspector-head {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      padding: 0.5rem 0.65rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--elevated);
+    }
+    .inspector-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0.55rem 0.65rem;
+      font-size: 0.76rem;
+    }
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding: 0.25rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .meta-row .k { color: var(--dim); flex-shrink: 0; }
+    .meta-row .v { color: var(--text); text-align: right; word-break: break-all; }
+    .meta-path {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+      padding: 0.4rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      word-break: break-all;
+    }
+    .inspector-note {
+      margin-top: 0.55rem;
+      font-size: 0.68rem;
+      color: var(--dim);
+      font-style: italic;
+    }
+    .actions {
+      padding: 0.5rem 0.65rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .btn {
+      font-family: var(--font);
+      font-size: 0.72rem;
+      padding: 0.4rem 0.55rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: var(--elevated);
+      color: var(--text);
+      cursor: pointer;
+      text-align: left;
+    }
+    .btn:hover { background: var(--hover); border-color: var(--border-strong); }
+    .btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
+    .btn-primary {
+      background: rgba(255, 204, 0, 0.15);
+      border-color: var(--gold);
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .btn-primary:hover { background: rgba(255, 204, 0, 0.22); }
+    .btn-danger {
+      border-color: rgba(255, 107, 107, 0.4);
+      color: var(--danger);
+    }
+    .btn-danger:hover { background: rgba(255, 107, 107, 0.08); }
+    .plan-panel {
+      background: var(--toolbar);
+      border-top: 1px solid var(--border-strong);
+      max-height: 220px;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    .plan-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.4rem 0.65rem;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    .plan-head h2 { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; color: var(--gold); }
+    .plan-tabs { display: flex; gap: 0; border: 1px solid var(--border); border-radius: 3px; overflow: hidden; }
+    .plan-tabs button {
+      font-family: var(--font);
+      font-size: 0.68rem;
+      padding: 0.25rem 0.5rem;
+      border: none;
+      background: var(--surface);
+      color: var(--muted);
+      cursor: pointer;
+    }
+    .plan-tabs button.active { background: var(--selected); color: var(--gold); }
+    .plan-tabs button:focus-visible { outline: 2px solid var(--gold); }
+    .plan-toolbar { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+    .plan-toolbar .btn { font-size: 0.65rem; padding: 0.25rem 0.45rem; }
+    .plan-body {
+      flex: 1;
+      overflow: auto;
+      padding: 0.5rem 0.65rem;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      line-height: 1.5;
+      color: var(--muted);
+      background: #080808;
+      white-space: pre-wrap;
+      word-break: break-word;
+      min-height: 80px;
+    }
+    .plan-safety {
+      font-size: 0.62rem;
+      color: var(--dim);
+      padding: 0.3rem 0.65rem;
+      border-top: 1px solid var(--border);
+      font-family: var(--font);
+    }
+    @media (max-width: 900px) {
+      .workspace { grid-template-columns: 160px 1fr 220px; }
+    }
+    @media (max-width: 720px) {
+      .workspace { grid-template-columns: 1fr; grid-template-rows: auto 1fr auto; }
+      .sidebar { max-height: 140px; border-right: none; border-bottom: 1px solid var(--border); }
+      .inspector { max-height: 200px; border-left: none; border-top: 1px solid var(--border); }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="titlebar">
+      <img src="../assets/brand/moonbridge-logo.png" alt="MoonBridge logo" class="brand-logo">
+      <div class="titleblock">
+        <h1>MoonPool Auditor</h1>
+        <p class="sub">Action Planner — prepares approval records, does not execute them</p>
+      </div>
+      <div class="pills" aria-label="Safety status">
+        <span class="pill">LOCAL ONLY</span>
+        <span class="pill">NO FILE WRITES</span>
+        <span class="pill">ACTION PLANS ONLY</span>
+      </div>
+      <div class="view-switch" role="group" aria-label="View mode">
+        <button type="button" data-view="columns" class="active">Columns</button>
+        <button type="button" data-view="list">List</button>
+        <button type="button" data-view="grid">Grid</button>
+      </div>
+    </header>
+
+    <div class="workspace">
+      <nav class="sidebar" id="sidebar" aria-label="MoonPool navigation"></nav>
+
+      <div class="main-col">
+        <div class="dropzone" id="dropzone">
+          Planning intake only — dropped files are not read, copied, moved, or stored.
+        </div>
+        <div class="drop-notice" id="dropNotice" role="status"></div>
+        <div class="browser" id="browser" aria-label="Sample browser"></div>
+      </div>
+
+      <aside class="inspector">
+        <div class="inspector-head">INSPECTOR</div>
+        <div class="inspector-body" id="inspectorBody">
+          <p class="inspector-note">Select a sample item to inspect mock metadata.</p>
+        </div>
+        <div class="actions" id="actionButtons">
+          <button type="button" class="btn btn-primary" data-action="review_summary">Prepare Review Summary</button>
+          <button type="button" class="btn" data-action="approval_note">Prepare Approval Note</button>
+          <button type="button" class="btn btn-danger" data-action="quarantine_note">Prepare Quarantine Note</button>
+          <button type="button" class="btn" data-action="allowlist_request">Prepare Allowlist Request</button>
+          <button type="button" class="btn" data-action="import_plan">Prepare Copy-Only Import Plan</button>
+        </div>
+      </aside>
+    </div>
+
+    <section class="plan-panel" aria-label="Generated Action Plan">
+      <div class="plan-head">
+        <h2>GENERATED ACTION PLAN</h2>
+        <div class="plan-tabs" role="tablist">
+          <button type="button" role="tab" data-tab="markdown" class="active" aria-selected="true">Markdown</button>
+          <button type="button" role="tab" data-tab="json" aria-selected="false">JSON</button>
+        </div>
+        <div class="plan-toolbar">
+          <button type="button" class="btn" id="copyMd">Copy Markdown</button>
+          <button type="button" class="btn" id="copyJson">Copy JSON</button>
+          <button type="button" class="btn" id="clearPlan">Clear Plan</button>
+        </div>
+      </div>
+      <pre class="plan-body" id="planOutput" tabindex="0">No action plan generated yet. Select a sample item and choose Prepare…</pre>
+      <p class="plan-safety">Generated plan only — no files were changed.</p>
+    </section>
+  </div>
+
+  <script>
+(function () {
+  'use strict';
+
+  var ROOT = '<MOONBRIDGE_ROOT>';
+  var ZONES = {
+    moonpool: { label: 'MoonPool', section: 'MOONPOOL', path: ROOT + '/MoonPool', items: [] },
+    staging: {
+      label: '00_Staging_Do_Not_Scan', section: 'REVIEW ZONES', path: ROOT + '/MoonPool/00_Staging_Do_Not_Scan',
+      badge: 'DNF', items: [
+        { id: 's1', name: 'Example_Project_Brief.pdf', type: 'document', size: '248 KB', modified: '2026-01-15', risk: 'low', status: 'pending review' },
+        { id: 's2', name: 'Notes_Sample.md', type: 'document', size: '12 KB', modified: '2026-01-14', risk: 'low', status: 'pending review' }
+      ]
+    },
+    approved: {
+      label: 'Approved_Batches', section: 'REVIEW ZONES', path: ROOT + '/MoonPool/01_Documents/Approved_Batches',
+      badge: '0', items: [
+        { id: 'a1', name: 'Batch_001_Manual_Review', type: 'folder', size: '—', modified: '2026-01-10', risk: 'low', status: 'awaiting allowlist' }
+      ]
+    },
+    working: {
+      label: 'Working', section: 'REVIEW ZONES', path: ROOT + '/MoonPool/03_Projects/Working',
+      items: [
+        { id: 'w1', name: 'Budget_Template.xlsx', type: 'spreadsheet', size: '89 KB', modified: '2026-01-12', risk: 'medium', status: 'in progress' },
+        { id: 'w2', name: 'Reference_Image_001.png', type: 'image', size: '1.2 MB', modified: '2026-01-11', risk: 'low', status: 'in progress' }
+      ]
+    },
+    finished: {
+      label: 'Finished', section: 'REVIEW ZONES', path: ROOT + '/MoonPool/03_Projects/Finished',
+      items: [
+        { id: 'f1', name: 'Image_Set_Review.zip', type: 'archive', size: '4.5 MB', modified: '2026-01-08', risk: 'low', status: 'organised' }
+      ]
+    },
+    archive: { label: 'Archive', section: 'REVIEW ZONES', path: ROOT + '/MoonPool/13_Archive/Archive', items: [] },
+    quarantine: {
+      label: '99_Quarantine_Do_Not_Scan', section: 'REFERENCES', path: ROOT + '/MoonPool/99_Quarantine_Do_Not_Scan',
+      badge: 'DNF', items: []
+    }
+  };
+
+  var zoneOrder = ['moonpool', 'staging', 'approved', 'working', 'finished', 'archive', 'quarantine'];
+  var state = { view: 'columns', zone: 'staging', item: null, planTab: 'markdown', lastMd: '', lastJson: '' };
+
+  var sidebarEl = document.getElementById('sidebar');
+  var browserEl = document.getElementById('browser');
+  var inspectorEl = document.getElementById('inspectorBody');
+  var planEl = document.getElementById('planOutput');
+  var dropzone = document.getElementById('dropzone');
+  var dropNotice = document.getElementById('dropNotice');
+
+  function riskBadge(r) {
+    var c = r === 'high' ? 'badge-high' : r === 'medium' ? 'badge-med' : 'badge-low';
+    return '<span class="badge ' + c + '">' + r + '</span>';
+  }
+
+  function renderSidebar() {
+    var html = '';
+    var lastSection = '';
+    zoneOrder.forEach(function (key) {
+      var z = ZONES[key];
+      if (z.section !== lastSection) {
+        html += '<div class="nav-label">' + z.section + '</div>';
+        lastSection = z.section;
+      }
+      var sel = state.zone === key ? ' selected' : '';
+      var badge = z.badge ? '<span class="nav-badge">' + z.badge + '</span>' : (z.items.length ? '<span class="nav-badge">' + z.items.length + '</span>' : '');
+      html += '<div class="nav-row' + sel + '" data-zone="' + key + '" role="button" tabindex="0">' +
+        '<span class="nav-marker"></span><span>' + z.label + '</span>' + badge + '</div>';
+    });
+    sidebarEl.innerHTML = html;
+    sidebarEl.querySelectorAll('.nav-row').forEach(function (row) {
+      row.addEventListener('click', function () { selectZone(row.getAttribute('data-zone')); });
+      row.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectZone(row.getAttribute('data-zone')); }
+      });
+    });
+  }
+
+  function selectZone(key) {
+    state.zone = key;
+    state.item = null;
+    renderSidebar();
+    renderBrowser();
+    renderInspector(null);
+  }
+
+  function selectItem(item) {
+    state.item = item;
+    renderBrowser();
+    renderInspector(item);
+  }
+
+  function emptyState() {
+    return '<div class="empty-state"><p>No sample items in this zone.</p><p>No files were scanned.</p></div>';
+  }
+
+  function renderBrowser() {
+    var z = ZONES[state.zone];
+    var items = z.items;
+    if (state.view === 'columns') {
+      var cols = '';
+      zoneOrder.forEach(function (key) {
+        var zz = ZONES[key];
+        var active = key === state.zone ? ' active' : '';
+        cols += '<div class="col-pane' + active + '"><div class="col-header">' + zz.label + '</div>';
+        if (!zz.items.length) {
+          cols += '<div class="item-row" style="color:var(--dim);cursor:default;font-size:0.7rem">(empty)</div>';
+        } else {
+          zz.items.forEach(function (it) {
+            var sel = state.item && state.item.id === it.id && state.zone === key ? ' selected' : '';
+            var icon = it.type === 'folder' ? 'folder' : 'file';
+            var chev = it.type === 'folder' ? '<span class="chevron">›</span>' : '<span class="chevron"></span>';
+            cols += '<div class="item-row' + sel + '" data-id="' + it.id + '" data-zone="' + key + '">' +
+              chev + '<span class="item-icon ' + icon + '"></span><span>' + it.name + '</span></div>';
+          });
+        }
+        cols += '</div>';
+      });
+      browserEl.innerHTML = '<div class="col-browser">' + cols + '</div>';
+    } else if (state.view === 'list') {
+      if (!items.length) { browserEl.innerHTML = emptyState(); bindItems(); return; }
+      var rows = items.map(function (it) {
+        var sel = state.item && state.item.id === it.id ? ' selected' : '';
+        return '<tr class="' + sel + '" data-id="' + it.id + '"><td>' + it.name + '</td><td>' + it.type +
+          '</td><td>' + it.size + '</td><td>' + it.modified + '</td><td>' + riskBadge(it.risk) +
+          '</td><td><span class="badge badge-neutral">' + it.status + '</span></td></tr>';
+      }).join('');
+      browserEl.innerHTML = '<table class="list-table"><thead><tr><th>Name</th><th>Type</th><th>Size</th><th>Modified</th><th>Risk</th><th>Status</th></tr></thead><tbody>' + rows + '</tbody></table>';
+    } else {
+      if (!items.length) { browserEl.innerHTML = emptyState(); bindItems(); return; }
+      var tiles = items.map(function (it) {
+        var sel = state.item && state.item.id === it.id ? ' selected' : '';
+        return '<div class="grid-tile' + sel + '" data-id="' + it.id + '"><div class="gicon"></div><div>' + it.name + '</div></div>';
+      }).join('');
+      browserEl.innerHTML = '<div class="grid-wrap">' + tiles + '</div>';
+    }
+    bindItems();
+  }
+
+  function bindItems() {
+    browserEl.querySelectorAll('[data-id]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        var id = el.getAttribute('data-id');
+        var zk = el.getAttribute('data-zone') || state.zone;
+        var it = ZONES[zk].items.filter(function (x) { return x.id === id; })[0];
+        if (zk !== state.zone) { state.zone = zk; renderSidebar(); }
+        if (it) selectItem(it);
+      });
+    });
+  }
+
+  function renderInspector(item) {
+    if (!item) {
+      inspectorEl.innerHTML = '<p class="inspector-note">Select a sample item to inspect mock metadata.</p><p class="inspector-note">Sample metadata only. No real file was read.</p>';
+      return;
+    }
+    var z = ZONES[state.zone];
+    var path = z.path + '/' + item.name;
+    inspectorEl.innerHTML =
+      '<div class="meta-row"><span class="k">Name</span><span class="v">' + item.name + '</span></div>' +
+      '<div class="meta-row"><span class="k">Type</span><span class="v">' + item.type + '</span></div>' +
+      '<div class="meta-row"><span class="k">Size</span><span class="v">' + item.size + '</span></div>' +
+      '<div class="meta-row"><span class="k">Modified</span><span class="v">' + item.modified + '</span></div>' +
+      '<div class="meta-row"><span class="k">Risk</span><span class="v">' + riskBadge(item.risk) + '</span></div>' +
+      '<div class="meta-row"><span class="k">Status</span><span class="v">' + item.status + '</span></div>' +
+      '<div class="meta-path">' + path + '</div>' +
+      '<p class="inspector-note">Recommended manual next step: review item, then prepare an action record for human confirmation.</p>' +
+      '<p class="inspector-note">Sample metadata only. No real file was read.</p>';
+  }
+
+  var ACTION_META = {
+    approval_note: { title: 'Approval Note', level: 0, reason: 'Human review and documentation of next approved step for sample item.' },
+    quarantine_note: { title: 'Quarantine Note', level: 5, reason: 'Plan to move uncertain material to quarantine — requires later human approval before any move.' },
+    allowlist_request: { title: 'Allowlist Request', level: 1, reason: 'Request to add exact batch path for metadata-only inventory after human cleansing.' },
+    import_plan: { title: 'Copy-Only Import Plan', level: 3, reason: 'Plan copy-only import with dry-run before any execute approval.' },
+    review_summary: { title: 'Review Summary', level: 0, reason: 'Summary of sample item review for human decision record.' }
+  };
+
+  function buildPlan(actionKey) {
+    var meta = ACTION_META[actionKey];
+    var item = state.item;
+    var z = ZONES[state.zone];
+    if (!item) {
+      planEl.textContent = 'Select a sample item before preparing an action plan.';
+      state.lastMd = state.lastJson = '';
+      return;
+    }
+    var exactPath = z.path + '/' + item.name;
+    var allowed = [];
+    var forbidden = ['whole-computer scanning', 'automatic execution', 'network access', 'filesystem write', 'allowlist edit by Auditor'];
+    if (actionKey === 'allowlist_request') {
+      allowed = ['human adds exact path to approved_scan_directories.txt', 'Level 1 metadata inventory after approval'];
+    } else if (actionKey === 'import_plan') {
+      allowed = ['dry-run copy plan review', 'Level 3 copy-only import after explicit approval'];
+    } else if (actionKey === 'quarantine_note') {
+      allowed = ['human review of quarantine decision record'];
+      forbidden.push('move without Level 5 approval');
+    } else if (actionKey === 'approval_note') {
+      allowed = ['documentation', 'human approval record'];
+    } else {
+      allowed = ['human review', 'documentation update', 'manual next step planning'];
+    }
+
+    var md = '# MoonBridge Action Plan — ' + meta.title + '\n\n' +
+      '**Action type:** ' + meta.title + '\n' +
+      '**Approval level:** ' + meta.level + '\n' +
+      '**Exact path:** `' + exactPath + '`\n' +
+      '**Item:** ' + item.name + ' (' + item.type + ')\n' +
+      '**Reason:** ' + meta.reason + '\n' +
+      '**Human review status:** pending — Auditor does not grant approval\n\n' +
+      '## Allowed actions (after human confirmation)\n' +
+      allowed.map(function (a) { return '- ' + a; }).join('\n') + '\n\n' +
+      '## Forbidden actions\n' +
+      forbidden.map(function (f) { return '- ' + f; }).join('\n') + '\n\n' +
+      '**Final human confirmation required:** yes\n' +
+      '**Non-destructive note:** This plan proposes review steps only. Rollback is inherent — no files were changed by the Auditor.\n\n' +
+      '---\n*Generated plan only — no files were changed.*';
+
+    var json = {
+      moonbridge_action_plan_version: '1.0',
+      created_by: 'moonpool_auditor_action_planner',
+      action_type: actionKey,
+      approval_level: meta.level,
+      exact_path: exactPath,
+      item_name: item.name,
+      item_type: item.type,
+      human_review_status: 'pending',
+      reason: meta.reason,
+      allowed_actions: allowed,
+      forbidden_actions: forbidden,
+      requires_final_confirmation: true,
+      non_destructive_note: 'Auditor generated plan only; no filesystem changes.',
+      generated_plan_only: true,
+      files_changed: false,
+      network_access: false,
+      filesystem_write: false,
+      scan_scope: 'none — sample metadata only'
+    };
+
+    state.lastMd = md;
+    state.lastJson = JSON.stringify(json, null, 2);
+    showPlan();
+  }
+
+  function showPlan() {
+    planEl.textContent = state.planTab === 'markdown' ? (state.lastMd || 'No action plan generated yet.') : (state.lastJson || 'No action plan generated yet.');
+  }
+
+  function copyText(text) {
+    if (!text) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).catch(function () { fallbackCopy(text); });
+    } else {
+      fallbackCopy(text);
+    }
+  }
+
+  function fallbackCopy(text) {
+    planEl.textContent = text;
+    planEl.focus();
+    try {
+      document.execCommand('copy');
+    } catch (e) { /* selection fallback only */ }
+  }
+
+  document.querySelectorAll('.view-switch button').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.view-switch button').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      state.view = btn.getAttribute('data-view');
+      renderBrowser();
+    });
+  });
+
+  document.querySelectorAll('[data-action]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      buildPlan(btn.getAttribute('data-action'));
+    });
+  });
+
+  document.querySelectorAll('.plan-tabs button').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.plan-tabs button').forEach(function (b) {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      state.planTab = btn.getAttribute('data-tab');
+      showPlan();
+    });
+  });
+
+  document.getElementById('copyMd').addEventListener('click', function () { copyText(state.lastMd); });
+  document.getElementById('copyJson').addEventListener('click', function () { copyText(state.lastJson); });
+  document.getElementById('clearPlan').addEventListener('click', function () {
+    state.lastMd = state.lastJson = '';
+    planEl.textContent = 'No action plan generated yet. Select a sample item and choose Prepare…';
+  });
+
+  ['dragenter', 'dragover'].forEach(function (ev) {
+    dropzone.addEventListener(ev, function (e) {
+      e.preventDefault();
+      dropzone.classList.add('drag-over');
+    });
+  });
+  dropzone.addEventListener('dragleave', function () { dropzone.classList.remove('drag-over'); });
+  dropzone.addEventListener('drop', function (e) {
+    e.preventDefault();
+    dropzone.classList.remove('drag-over');
+    var n = (e.dataTransfer && e.dataTransfer.files) ? e.dataTransfer.files.length : 0;
+    dropNotice.textContent = n + ' item(s) detected for planning. No files were read or changed.';
+    dropNotice.classList.add('visible');
+  });
+
+  renderSidebar();
+  renderBrowser();
+})();
+  </script>
+</body>
+</html>

@@ -28,6 +28,18 @@ A simple plan for the public template. Dates are tentative; scope may shift base
 
 **Not included in v0.2:** live scanning, auto-indexing, running agents, or background automation.
 
+### MoonPool Auditor Action Planner *(current / next work)*
+
+- Initial `moonpool_auditor.html` — OS-style local utility for action-plan generation
+- Sample/mock MoonPool navigation; Columns, List, Grid views
+- Inspector pane and Generated Action Plan panel (Markdown + JSON)
+- Prepare approval, quarantine, allowlist, import, and review plans — **no execution**
+
+**Future (not yet built):**
+
+- Catalog-driven Auditor fed by approved metadata-only inventories
+- Approved local helper executor that runs only human-confirmed plans
+
 ---
 
 ## v0.3 — Optional sample project packs

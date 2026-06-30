@@ -16,7 +16,7 @@ Your human-readable map of MoonBridge. Update this by hand as you organise — o
 | Helper Tools | `05_Helper_Tools/` | Shell scripts (review first) |
 | Finished Outputs | `06_Finished_Outputs/` | Polished deliverables |
 | Backups | `07_Backups/` | Snapshots |
-| Human Dashboard | `08_Human_Dashboard/` | Static offline overview |
+| Human Dashboard | `08_Human_Dashboard/` | Static overview + MoonPool Auditor Action Planner |
 | Agent Prompts | `09_Agent_Prompts/` | Safe AI prompt templates |
 | Automation Plans | `10_Automation_Plans/` | Future automation docs (not implemented) |
 | MoonPool | `MoonPool/` | User file intake |
@@ -75,6 +75,7 @@ Your human-readable map of MoonBridge. Update this by hand as you organise — o
 - [Main README](../README.md)
 - [How This System Works](../00_Read_Me_First/How_This_System_Works.md)
 - [Human Dashboard](../08_Human_Dashboard/dashboard.html)
+- [MoonPool Auditor](../08_Human_Dashboard/moonpool_auditor.html)
 - [Agent Prompts](../09_Agent_Prompts/README.md)
 - [Automation Plans](../10_Automation_Plans/README.md)
 - [Human-First Workflow](../10_Automation_Plans/Human_First_Workflow.md)

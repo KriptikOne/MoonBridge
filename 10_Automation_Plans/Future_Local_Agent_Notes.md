@@ -29,6 +29,7 @@ MoonBridge front-loads that structure so the agent starts with a map, not a myst
 | Project context | Indexes, catalogs, templates |
 | Risk policy | AGENTS.md sixteen laws |
 | Approval workflow | 09_Agent_Prompts/ templates |
+| Action plans | MoonPool Auditor output (human-reviewed before execution) |
 
 ---
 
@@ -39,6 +40,14 @@ MoonBridge front-loads that structure so the agent starts with a map, not a myst
 - Read Private_Do_Not_Scan or quarantine zones
 - Run installs, builds, or network calls without per-command approval
 - Assume past approval applies to new commands
+
+---
+
+## Action plans vs raw folders
+
+The initial [MoonPool Auditor](../08_Human_Dashboard/moonpool_auditor.html) generates structured action plans (Markdown and JSON) for human review. A future local agent should **consume human-approved action plans** rather than guessing next steps from raw folder layouts.
+
+The Auditor does not execute plans. Execution remains a separate, explicitly approved step — by a helper script, Grok session, or local agent operating under AGENTS.md.
 
 ---
 

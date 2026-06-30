@@ -38,6 +38,12 @@ These prompts help agents:
 
 See [AGENTS.md](../AGENTS.md) for the sixteen laws.
 
+## MoonPool Auditor action plans
+
+Generated plans from [moonpool_auditor.html](../08_Human_Dashboard/moonpool_auditor.html) (Markdown or JSON) can be pasted into an agent session as **structured context**.
+
+The Auditor prepares approval records — it does not execute them. An agent receiving a pasted plan must still request explicit human confirmation before any risky action.
+
 ## Not autonomous
 
 These prompts **do not** make MoonBridge an agent. They prepare safe instructions for humans who choose to use AI tools later.
