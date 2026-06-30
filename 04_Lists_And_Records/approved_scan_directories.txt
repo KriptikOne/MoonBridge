@@ -1,0 +1,23 @@
+# MoonBridge Approved Scan Directories
+# =====================================
+#
+# NO DIRECTORIES ARE APPROVED YET.
+#
+# This file is the ONLY gate for metadata-only inventory (Level 1).
+# Each line must be a FULL ABSOLUTE PATH to an EXACT folder.
+#
+# Rules:
+# - One path per line (no wildcards)
+# - No comments on the same line as a path
+# - No parent paths (listing a parent does NOT approve children)
+# - Do NOT list MoonBridge root, MoonPool root, or Approved_Batches roots
+# - Only list exact child batch folders you have manually cleansed
+#
+# Example (commented out — not active):
+# /Users/yourname/MoonBridge/MoonPool/01_Documents/Approved_Batches/2026-06_Test_Batch
+#
+# To approve a directory:
+# 1. Manually cleanse your files
+# 2. Place them in Approved_Batches/YourBatchName/
+# 3. Add the exact full path below (uncommented, one line)
+# 4. Run inventory only on that exact path with human approval

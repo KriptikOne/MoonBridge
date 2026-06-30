@@ -1,0 +1,11 @@
+# OS and file-manager metadata
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# Local system noise
+.Trashes
+.Spotlight-V100
+.fseventsd

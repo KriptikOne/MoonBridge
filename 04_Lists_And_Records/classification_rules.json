@@ -1,0 +1,50 @@
+{
+  "version": "0.1.0",
+  "description": "Simple file type and risk classification by extension and filename pattern only. No file content reading.",
+  "file_types": {
+    "image": [".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg", ".bmp", ".tiff", ".ico", ".heic"],
+    "audio": [".mp3", ".wav", ".flac", ".aac", ".m4a", ".ogg", ".aiff", ".wma"],
+    "video": [".mp4", ".mov", ".avi", ".mkv", ".webm", ".m4v", ".wmv"],
+    "document": [".pdf", ".doc", ".docx", ".txt", ".rtf", ".odt", ".pages", ".md"],
+    "spreadsheet": [".csv", ".xls", ".xlsx", ".ods", ".numbers", ".tsv"],
+    "presentation": [".ppt", ".pptx", ".key", ".odp"],
+    "archive": [".zip", ".tar", ".gz", ".bz2", ".7z", ".rar"],
+    "code": [".js", ".ts", ".py", ".rb", ".go", ".rs", ".java", ".c", ".cpp", ".h", ".html", ".css", ".json", ".xml", ".yaml", ".yml", ".sh"],
+    "design": [".psd", ".ai", ".sketch", ".fig", ".xd", ".indd", ".eps"],
+    "font": [".ttf", ".otf", ".woff", ".woff2", ".eot"]
+  },
+  "risk_flags": {
+    "env_file": {
+      "patterns": [".env", ".env.local", ".env.production"],
+      "match": "filename"
+    },
+    "possible_key": {
+      "patterns": ["id_rsa", ".pem", ".key", ".p12", ".pfx"],
+      "match": "filename"
+    },
+    "possible_crypto_secret": {
+      "patterns": ["seed", "mnemonic", "wallet", "recovery"],
+      "match": "filename_insensitive"
+    },
+    "possible_secret": {
+      "patterns": ["password", "credential", "secret", "token"],
+      "match": "filename_insensitive"
+    },
+    "code_project": {
+      "patterns": ["package.json", "Cargo.toml", "pyproject.toml", "go.mod"],
+      "match": "filename"
+    },
+    "code_dependency_tree": {
+      "patterns": ["node_modules"],
+      "match": "path_segment"
+    },
+    "version_control": {
+      "patterns": [".git"],
+      "match": "path_segment"
+    }
+  },
+  "skip_path_segments": [
+    "node_modules",
+    ".git"
+  ]
+}
