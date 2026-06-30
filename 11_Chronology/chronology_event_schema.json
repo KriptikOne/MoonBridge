@@ -1,0 +1,32 @@
+{
+  "_description": "Sample timeline event structure for MoonBridge Chronology. Example only — not live data.",
+  "moonbridge_chronology_event_version": "0.1",
+  "example_event": {
+    "eventId": "timeline-event-000001",
+    "date": "2022-03-18",
+    "datePrecision": "day",
+    "dateConfidence": "medium",
+    "dateSource": "filename",
+    "sourceRecordId": "catalog-record-000001",
+    "title": "Sample dated record",
+    "summary": "Sample timeline entry from a catalog record.",
+    "collection": "Sample Collection",
+    "requiresReview": false,
+    "chronologyNotes": "Sample only. No real file was scanned."
+  },
+  "required_fields": [
+    "eventId",
+    "date",
+    "datePrecision",
+    "dateConfidence",
+    "dateSource",
+    "sourceRecordId",
+    "title",
+    "summary",
+    "collection",
+    "requiresReview",
+    "chronologyNotes"
+  ],
+  "datePrecision_values": ["year", "month", "day", "time", "unknown"],
+  "dateConfidence_values": ["unknown", "low", "medium", "high", "verified"]
+}
