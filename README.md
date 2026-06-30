@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/brand/moonbridge-logo.png" alt="MoonBridge logo" width="220">
+</p>
+
 # MoonBridge
 
 **A local-first file organisation system that prepares your files before agents touch them.**
