@@ -1,0 +1,74 @@
+{
+  "moonbridge_timeline_export_version": "0.1",
+  "export_type": "handover_timeline_sample",
+  "root_placeholder": "<MOONBRIDGE_ROOT>",
+  "generated_by": "manual_sample",
+  "note": "Sample handover timeline only — no real scan was performed",
+  "events": [
+    {
+      "eventId": "handover-event-000001",
+      "date": "2018-06-14",
+      "datePrecision": "day",
+      "dateConfidence": "high",
+      "dateSource": "visible document text",
+      "sourceRecordId": "catalog-record-003",
+      "title": "Archive_Letter_Sample.pdf",
+      "summary": "Document-dated sample awaiting human verification for handover.",
+      "collection": "Sample Collection B",
+      "requiresReview": true,
+      "chronologyNotes": "Document date not yet verified for export."
+    },
+    {
+      "eventId": "handover-event-000002",
+      "date": "2019-12-01",
+      "datePrecision": "day",
+      "dateConfidence": "verified",
+      "dateSource": "human_verified",
+      "sourceRecordId": "catalog-record-007",
+      "title": "Image_Set_Review.zip",
+      "summary": "Human verified archive period — suitable for handover sample.",
+      "collection": "Finished Samples",
+      "requiresReview": false,
+      "chronologyNotes": "verifiedDate confirmed by human reviewer."
+    },
+    {
+      "eventId": "handover-event-000003",
+      "date": "2022-03",
+      "datePrecision": "month",
+      "dateConfidence": "medium",
+      "dateSource": "filename",
+      "sourceRecordId": "catalog-record-001",
+      "title": "Example_Project_Brief.pdf",
+      "summary": "Filename-inferred month — not verified.",
+      "collection": "Sample Collection A",
+      "requiresReview": true,
+      "chronologyNotes": "Include in handover only after human confirmation or with explicit unverified flag."
+    },
+    {
+      "eventId": "handover-event-000004",
+      "date": "2024-09-02",
+      "datePrecision": "day",
+      "dateConfidence": "low",
+      "dateSource": "filesystem",
+      "sourceRecordId": "catalog-record-005",
+      "title": "Budget_Template.xlsx",
+      "summary": "Filesystem date flagged as suspicious for handover dating.",
+      "collection": "Working Samples",
+      "requiresReview": true,
+      "chronologyNotes": "Do not use filesystem date as content date without review."
+    },
+    {
+      "eventId": "handover-event-000005",
+      "date": "unknown",
+      "datePrecision": "unknown",
+      "dateConfidence": "unknown",
+      "dateSource": "unknown",
+      "sourceRecordId": "catalog-record-008",
+      "title": "Notes_Untitled_Sample.md",
+      "summary": "Missing dates — listed in handover with explicit unknown period.",
+      "collection": "Archive Samples",
+      "requiresReview": true,
+      "chronologyNotes": "No useful date found."
+    }
+  ]
+}

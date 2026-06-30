@@ -116,6 +116,33 @@ MoonBridge prepares structured context so future local agents can work safely **
 
 ---
 
+## Chronology Core
+
+**Chronology is now a core MoonBridge planning module.** It helps place files, folders, catalogue records, collections, and projects in time — without scanning or acting on files by itself.
+
+MoonBridge tracks multiple date types: filesystem dates, document dates, event dates, inferred dates, and human-verified dates. **Date confidence** and **date source** are explicit on every record.
+
+- **[11_Chronology/](11_Chronology/)** — date field definitions, confidence rules, sample reports, and timeline events
+- **[12_Review_Queue/](12_Review_Queue/)** — flags missing, conflicting, and suspicious dates for human attention
+- **[13_Handover_Export/](13_Handover_Export/)** — chronology summaries and timeline JSON for reviewed handover packages
+
+Chronology does **not** grant approval or perform actions. Review queues record uncertainty; they are not populated automatically. Handover exports package reviewed information for future use — human verification remains final.
+
+### Planning modules
+
+| Module | Status in template |
+|--------|-------------------|
+| File Inventory | Planning docs and allowlist workflow |
+| Metadata Audit | Level 1 metadata-only inventory (approval-gated) |
+| Duplicate Detection | Classification rules and human review |
+| Catalogue Records | `sample_file_catalog.json` and schema |
+| Digest Notes | Templates and indexes |
+| Review Queue | [12_Review_Queue/](12_Review_Queue/) |
+| Chronology | [11_Chronology/](11_Chronology/) |
+| Handover Export | [13_Handover_Export/](13_Handover_Export/) |
+
+---
+
 ## Start here
 
 | Step | Document |
@@ -145,6 +172,9 @@ If you work with AI assistants, read [AGENTS.md](AGENTS.md) and [09_Agent_Prompt
 ├── 08_Human_Dashboard/    ← static offline overview
 ├── 09_Agent_Prompts/      ← safe prompt templates
 ├── 10_Automation_Plans/   ← future automation planning (not implemented)
+├── 11_Chronology/         ← date fields, confidence, sample timelines
+├── 12_Review_Queue/       ← human review for date issues
+├── 13_Handover_Export/    ← chronology handover templates
 ├── MoonPool/              ← controlled file intake zone
 ├── Private_Do_Not_Scan/   ← sensitive material — never auto-scan
 ├── AGENTS.md              ← laws for AI assistants

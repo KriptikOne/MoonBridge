@@ -108,6 +108,32 @@ See [auditor_catalog_guide.md](../08_Human_Dashboard/auditor_catalog_guide.md).
 
 ---
 
+## Chronology fields
+
+Catalog records may include optional chronology fields alongside standard metadata. See [11_Chronology/chronology_record_fields.md](../11_Chronology/chronology_record_fields.md) and [catalogue_chronology_extension.json](../11_Chronology/catalogue_chronology_extension.json) for examples.
+
+| Field | Description |
+|-------|-------------|
+| `fileCreatedDate` | Date the file was created on the current filesystem |
+| `fileModifiedDate` | Last modified date from filesystem metadata |
+| `importedDate` | Date MoonBridge added the record to the audit or catalogue |
+| `documentDate` | Date found inside the document, if available |
+| `eventDate` | Real-world date the file appears to concern |
+| `inferredDate` | Date guessed from filename, folder name, metadata, or content |
+| `verifiedDate` | Date confirmed by a human |
+| `dateConfidence` | `unknown`, `low`, `medium`, `high`, or `verified` |
+| `dateSource` | Where the date came from |
+| `chronologyNotes` | Human-readable notes about conflicts or assumptions |
+
+### Chronology safety
+
+- Chronology fields **do not grant approval** to scan, read, move, copy, delete, execute, or edit anything
+- `verifiedDate` requires **human confirmation** — do not set from inferred clues alone
+- `inferredDate` is **not verified** — treat as a clue until a human sets `verifiedDate`
+- `dateConfidence` must be **explicit** on every record that includes chronology fields
+
+---
+
 ## Related files
 
 - [sample_file_catalog.json](sample_file_catalog.json) — public sample

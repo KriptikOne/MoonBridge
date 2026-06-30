@@ -51,6 +51,8 @@ The Auditor only prepares plans. Execution remains a separate, explicitly approv
 
 Future local agents should consume **human-approved action plans** and **catalog records** as structured context. They should not discover boundaries by scanning raw folders. **Catalog presence does not override approval levels.**
 
+Future local agents may consume **chronology records** as structured context — date fields, confidence labels, Review Queue summaries, and handover manifests. They should **not** use chronology fields as permission to scan, move, copy, delete, upload, or run commands. Inferred dates remain unverified until a human sets `verifiedDate`.
+
 ---
 
 ## Introduction sequence (recommended)

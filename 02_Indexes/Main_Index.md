@@ -19,6 +19,9 @@ Your human-readable map of MoonBridge. Update this by hand as you organise — o
 | Human Dashboard | `08_Human_Dashboard/` | Static overview + MoonPool Auditor Action Planner |
 | Agent Prompts | `09_Agent_Prompts/` | Safe AI prompt templates |
 | Automation Plans | `10_Automation_Plans/` | Future automation docs (not implemented) |
+| Chronology | `11_Chronology/` | Date fields, confidence, sample timelines |
+| Review Queue | `12_Review_Queue/` | Human review for date issues |
+| Handover Export | `13_Handover_Export/` | Chronology handover templates |
 | MoonPool | `MoonPool/` | User file intake |
 | Private | `Private_Do_Not_Scan/` | Sensitive — never scan |
 
@@ -82,6 +85,9 @@ Your human-readable map of MoonBridge. Update this by hand as you organise — o
 - [Agent Prompts](../09_Agent_Prompts/README.md)
 - [Automation Plans](../10_Automation_Plans/README.md)
 - [Human-First Workflow](../10_Automation_Plans/Human_First_Workflow.md)
+- [Chronology](../11_Chronology/)
+- [Review Queue](../12_Review_Queue/)
+- [Handover Export](../13_Handover_Export/)
 
 ---
 
@@ -97,4 +103,4 @@ Update indexes when catalogs change, or keep indexes as the human-friendly summa
 
 ---
 
-*Last updated: 2026-06-30 (v0.2 usability layer)*
+*Last updated: 2026-06-30 (Chronology Core Phase 2)*

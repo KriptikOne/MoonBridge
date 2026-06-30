@@ -1,0 +1,28 @@
+{
+  "moonbridge_handover_version": "0.1",
+  "created_by": "human_reviewer",
+  "source_catalog": {
+    "catalog_id": "catalog-sample-001",
+    "catalog_type": "manual_sample_catalog",
+    "root_placeholder": "<MOONBRIDGE_ROOT>",
+    "scope_note": "Exact path or batch — replace with reviewed scope"
+  },
+  "included_reports": [
+    "chronology_summary.md",
+    "11_Chronology/chronology_report_sample.md"
+  ],
+  "included_timeline_exports": [
+    "timeline_export_sample.json",
+    "11_Chronology/chronology_events_sample.json"
+  ],
+  "review_queue_summary": {
+    "missing_dates": 0,
+    "conflicting_dates": 0,
+    "suspicious_file_dates": 0,
+    "needs_date_confirmation": 0,
+    "notes": "Counts filled by human after Review Queue review — not auto-populated"
+  },
+  "approval_status": "pending_human_review",
+  "human_approved": false,
+  "notes": "Handover manifest template only. Does not grant permission to scan, read, move, copy, delete, execute, or upload. Human verification remains final."
+}

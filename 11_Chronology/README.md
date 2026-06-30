@@ -23,8 +23,8 @@ Chronology supports:
 - Migration readiness
 - Archive preparation
 - Audit trails
-- Review queues (future phases)
-- Handover exports (future phases)
+- Review queues
+- Handover exports
 
 ---
 

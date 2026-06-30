@@ -115,4 +115,22 @@ You may later create your own dashboard data from **manually reviewed** catalogs
 
 ---
 
+---
+
+## Chronology, Review Queue, and Handover Export
+
+MoonBridge now includes a **Chronology Core** planning layer:
+
+| Module | Path | Role |
+|--------|------|------|
+| Chronology | [11_Chronology/](../11_Chronology/) | Date fields, confidence rules, sample reports |
+| Review Queue | [12_Review_Queue/](../12_Review_Queue/) | Human attention for missing, conflicting, and suspicious dates |
+| Handover Export | [13_Handover_Export/](../13_Handover_Export/) | Chronology summaries and timeline JSON for reviewed packages |
+
+These modules are **documentation and template only** in this release. They do not scan folders, populate queues automatically, or generate timeline exports without human preparation.
+
+The MoonPool Auditor action plans may include chronology fields in a future update. The Auditor does **not** include a timeline renderer today.
+
+---
+
 *The dashboard orients humans. MoonPool and the allowlist protect your files.*

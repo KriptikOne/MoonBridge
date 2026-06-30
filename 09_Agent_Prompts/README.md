@@ -46,6 +46,14 @@ The Auditor prepares approval records — it does not execute them. An agent rec
 
 Agents may also receive **catalog excerpts** as context. Agents must **not** infer approval from catalog presence alone. Catalog records do not grant permission to scan, read, move, copy, or execute anything.
 
+## Chronology records as context
+
+Agents may receive **chronology records** as context — date fields, confidence labels, Review Queue flags, or handover summaries.
+
+Agents must **not** infer approval from chronology fields. Chronology describes dates and uncertainty; it does not grant permission to act.
+
+Agents must treat **inferred dates as unverified** unless both `verifiedDate` is set and human confirmation is documented. `dateConfidence: verified` applies only after explicit human review.
+
 ## Not autonomous
 
 These prompts **do not** make MoonBridge an agent. They prepare safe instructions for humans who choose to use AI tools later.

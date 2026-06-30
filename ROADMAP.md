@@ -41,6 +41,19 @@ A simple plan for the public template. Dates are tentative; scope may shift base
 - Private catalogs from approved metadata-only inventories (human exports JSON for paste)
 - Approved local helper executor that runs only human-confirmed plans — **execution does not exist today**
 
+### Chronology Core *(current / completed layer)*
+
+- [11_Chronology/](11_Chronology/) — date field definitions, confidence rules, sample reports, timeline events
+- [12_Review_Queue/](12_Review_Queue/) — human review for missing, conflicting, and suspicious dates
+- [13_Handover_Export/](13_Handover_Export/) — chronology summaries and timeline JSON for handover packages
+
+**Not included:** automatic chronology scanning, auto-populated review queues, or auto-generated timeline exports.
+
+**Later phase (not in current release):**
+
+- Optional Local Helper — suggested dates only, never verified without human confirmation
+- Future helper execution — approval-gated; does not exist today
+
 ---
 
 ## v0.3 — Optional sample project packs

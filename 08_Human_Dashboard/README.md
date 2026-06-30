@@ -42,4 +42,4 @@ Neither tool:
 3. Copy generated action plans into your workflow or [09_Agent_Prompts/](../09_Agent_Prompts/)
 4. Follow [Human_First_Workflow.md](../10_Automation_Plans/Human_First_Workflow.md) for real work
 
-See also: [09_Agent_Prompts/](../09_Agent_Prompts/) · [10_Automation_Plans/](../10_Automation_Plans/)
+See also: [09_Agent_Prompts/](../09_Agent_Prompts/) · [10_Automation_Plans/](../10_Automation_Plans/) · [11_Chronology/](../11_Chronology/) · [12_Review_Queue/](../12_Review_Queue/) · [13_Handover_Export/](../13_Handover_Export/)
